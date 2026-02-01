@@ -28,10 +28,19 @@ Close content modal if present
     Close consent modal if present
 
 Open join page
-    [Arguments]    ${url}=https://nfbusty.com/join?cascid=132
+    [Arguments]    ${url}=https://nfbusty.com/join
     Set Browser Timeout    ${BROWSER_TIMEOUT}
     New Page    about:blank
     Go To    ${url}
+
+Select payment method ACH
+    [Documentation]    Select ACH payment option (cascid=132) if available.
+    ${ach}=    Set Variable    css=a[data-ignore-join-block="true"][href*="cascid=132"]:has-text("ACH")
+    ${count}=    Get Element Count    ${ach}
+    IF    ${count} > 0
+        Click    ${ach}
+        Wait Until Keyword Succeeds    20s    1s    Current URL should contain    cascid=132
+    END
 
 Select 30 day membership option
     [Documentation]    Select the "30 Day Membership" plan after the modal is closed.
@@ -51,6 +60,7 @@ Select 30 day membership option
 Close modal and select 30 day membership
     [Documentation]    Close the modal if shown, then select the 30 day plan.
     Close consent modal if present
+    Select payment method ACH
     Select 30 day membership option
 
 Enter email and password and proceed to checkout
@@ -130,6 +140,11 @@ Current URL should start with
     [Arguments]    ${prefix}
     ${url}=    Get Url
     Should Start With    ${url}    ${prefix}
+
+Current URL should contain
+    [Arguments]    ${text}
+    ${url}=    Get Url
+    Should Contain    ${url}    ${text}
 
 Select 30 day membership and proceed to checkout
     [Documentation]    Close consent modal, select 30 day membership, fill email/password if prompted, proceed to checkout.
