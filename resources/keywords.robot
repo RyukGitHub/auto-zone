@@ -36,7 +36,15 @@ Open join page
 Select 30 day membership option
     [Documentation]    Select the "30 Day Membership" plan after the modal is closed.
     ${option}=    Set Variable    css=label.join-option:has-text("30 Day Membership")
-    Wait For Elements State    ${option}    visible    timeout=20s
+    Capture screenshot    before-wait-membership
+    ${status}    ${msg}=    Run Keyword And Ignore Error    Wait For Elements State    ${option}    visible    timeout=20s
+    IF    '${status}' != 'PASS'
+        ${u}=    Get Url
+        ${t}=    Get Title
+        Log To Console    ERROR: Membership option not visible. Title: ${t} | URL: ${u}
+        Capture screenshot    membership-not-visible
+        Fail    ${msg}
+    END
     Click    ${option}
     Capture screenshot    after-select-membership
 
