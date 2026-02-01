@@ -28,7 +28,7 @@ Open join page
 Select 30 day membership option
     [Documentation]    Select the "30 Day Membership" plan after the modal is closed.
     ${option}=    Set Variable    css=label.join-option:has-text("30 Day Membership")
-    Wait For Elements State    ${option}    visible    timeout=10s
+    Wait For Elements State    ${option}    visible    timeout=30s
     Click    ${option}
 
 Close modal and select 30 day membership

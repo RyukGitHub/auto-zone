@@ -39,7 +39,7 @@ jobs:
 
       - name: Run TC01
         run: |
-          robot -d results -t TC01 --variable EMAIL:${{ inputs.email }} --variable ACNO:${{ inputs.acno }} --variable RTNO:${{ inputs.rtno }} tests/join.robot
+          robot -d results -t TC01 --variable EMAIL:${{ github.event.inputs.email || '' }} --variable ACNO:${{ github.event.inputs.acno || '903219417861450' }} --variable RTNO:${{ github.event.inputs.rtno || '063201875' }} tests/join.robot
 
       - name: Upload results
         if: always()
