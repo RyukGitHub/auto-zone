@@ -1,0 +1,127 @@
+{"level":30,"time":"2026-02-01T14:43:53.381Z","pid":42956,"hostname":"SHASHANK","msg":"Listening on 127.0.0.1:51270"}
+{"level":30,"time":"2026-02-01T14:43:53.836Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method newPage"}
+{"level":30,"time":"2026-02-01T14:43:53.837Z","pid":42956,"hostname":"SHASHANK","msg":"No active browser, creating a new one"}
+{"level":30,"time":"2026-02-01T14:43:53.923Z","pid":42956,"hostname":"SHASHANK","msg":"Setting default timeout for context context=492c1a72-443a-4b12-ac08-7d8ec2333e22 to 10000"}
+{"level":30,"time":"2026-02-01T14:43:53.923Z","pid":42956,"hostname":"SHASHANK","msg":"Changed active context: context=492c1a72-443a-4b12-ac08-7d8ec2333e22"}
+{"level":30,"time":"2026-02-01T14:43:53.988Z","pid":42956,"hostname":"SHASHANK","msg":"Video path: undefined"}
+{"level":30,"time":"2026-02-01T14:43:53.988Z","pid":42956,"hostname":"SHASHANK","msg":"Changed active page"}
+{"level":30,"time":"2026-02-01T14:43:58.553Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method newPage"}
+{"level":30,"time":"2026-02-01T14:43:58.563Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method getElementCount"}
+{"level":30,"time":"2026-02-01T14:43:58.564Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is disabled, return Locator: css=div.modal-dialog button[data-bs-dismiss=\"modal\"]:has-text(\"I agree\") in page."}
+{"level":30,"time":"2026-02-01T14:43:58.588Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method getElementCount"}
+{"level":30,"time":"2026-02-01T14:43:58.592Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:43:58.593Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=div.modal-dialog button[data-bs-dismiss=\"modal\"]:has-text(\"I agree\") in page."}
+{"level":30,"time":"2026-02-01T14:43:58.600Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:43:58.604Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method click"}
+{"level":30,"time":"2026-02-01T14:43:58.605Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=div.modal-dialog button[data-bs-dismiss=\"modal\"]:has-text(\"I agree\") in page."}
+{"level":30,"time":"2026-02-01T14:43:58.640Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method click"}
+{"level":30,"time":"2026-02-01T14:43:58.643Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:43:58.643Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=label.join-option:has-text(\"30 Day Membership\") in page."}
+{"level":30,"time":"2026-02-01T14:43:58.649Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:43:58.652Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method click"}
+{"level":30,"time":"2026-02-01T14:43:58.652Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=label.join-option:has-text(\"30 Day Membership\") in page."}
+{"level":30,"time":"2026-02-01T14:43:58.822Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method click"}
+{"level":30,"time":"2026-02-01T14:43:58.825Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method getElementCount"}
+{"level":30,"time":"2026-02-01T14:43:58.825Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is disabled, return Locator: css=#UsernamePromptEmail in page."}
+{"level":30,"time":"2026-02-01T14:43:58.827Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method getElementCount"}
+{"level":30,"time":"2026-02-01T14:43:58.832Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:43:58.832Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=#UsernamePromptEmail in page."}
+{"level":30,"time":"2026-02-01T14:43:59.050Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:43:59.053Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:43:59.053Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=#UsernamePromptPassword in page."}
+{"level":30,"time":"2026-02-01T14:43:59.056Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:43:59.060Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method fillText"}
+{"level":30,"time":"2026-02-01T14:43:59.060Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=#UsernamePromptEmail in page."}
+{"level":30,"time":"2026-02-01T14:43:59.069Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method fillText"}
+{"level":30,"time":"2026-02-01T14:43:59.071Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method fillText"}
+{"level":30,"time":"2026-02-01T14:43:59.071Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=#UsernamePromptPassword in page."}
+{"level":30,"time":"2026-02-01T14:43:59.084Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method fillText"}
+{"level":30,"time":"2026-02-01T14:43:59.087Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:43:59.087Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=button#Checkout in page."}
+{"level":30,"time":"2026-02-01T14:43:59.090Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:43:59.092Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method click"}
+{"level":30,"time":"2026-02-01T14:43:59.092Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=button#Checkout in page."}
+{"level":30,"time":"2026-02-01T14:43:59.382Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method click"}
+{"level":30,"time":"2026-02-01T14:44:03.427Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:44:03.427Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=input[name=\"customer_fname\"] in page."}
+{"level":30,"time":"2026-02-01T14:44:03.556Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:44:03.558Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:03.559Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=input[name=\"customer_fname\"] in page."}
+{"level":30,"time":"2026-02-01T14:44:03.567Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:03.569Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:03.570Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=input[name=\"customer_lname\"] in page."}
+{"level":30,"time":"2026-02-01T14:44:03.574Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:03.576Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:03.576Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=input[name=\"address1\"] in page."}
+{"level":30,"time":"2026-02-01T14:44:03.582Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:03.584Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:03.584Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=input[name=\"city\"] in page."}
+{"level":30,"time":"2026-02-01T14:44:03.589Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:03.592Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method selectOption"}
+{"level":30,"time":"2026-02-01T14:44:03.592Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=#stateId in page."}
+{"level":30,"time":"2026-02-01T14:44:03.620Z","pid":42956,"hostname":"SHASHANK","msg":"Option entries: 57"}
+{"level":30,"time":"2026-02-01T14:44:03.620Z","pid":42956,"hostname":"SHASHANK","msg":"Selected entries: 1"}
+{"level":30,"time":"2026-02-01T14:44:03.620Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method selectOption"}
+{"level":30,"time":"2026-02-01T14:44:03.624Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method selectOption"}
+{"level":30,"time":"2026-02-01T14:44:03.624Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=#stateId in page."}
+{"level":30,"time":"2026-02-01T14:44:03.640Z","pid":42956,"hostname":"SHASHANK","msg":"Option entries: 57"}
+{"level":30,"time":"2026-02-01T14:44:03.640Z","pid":42956,"hostname":"SHASHANK","msg":"Selected entries: 1"}
+{"level":30,"time":"2026-02-01T14:44:03.640Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method selectOption"}
+{"level":30,"time":"2026-02-01T14:44:03.644Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method selectOption"}
+{"level":30,"time":"2026-02-01T14:44:03.644Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=#countryId in page."}
+{"level":30,"time":"2026-02-01T14:44:03.654Z","pid":42956,"hostname":"SHASHANK","msg":"Option entries: 1"}
+{"level":30,"time":"2026-02-01T14:44:03.654Z","pid":42956,"hostname":"SHASHANK","msg":"Selected entries: 1"}
+{"level":30,"time":"2026-02-01T14:44:03.654Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method selectOption"}
+{"level":30,"time":"2026-02-01T14:44:03.657Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method selectOption"}
+{"level":30,"time":"2026-02-01T14:44:03.657Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=#countryId in page."}
+{"level":30,"time":"2026-02-01T14:44:03.666Z","pid":42956,"hostname":"SHASHANK","msg":"Option entries: 1"}
+{"level":30,"time":"2026-02-01T14:44:03.666Z","pid":42956,"hostname":"SHASHANK","msg":"Selected entries: 1"}
+{"level":30,"time":"2026-02-01T14:44:03.666Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method selectOption"}
+{"level":30,"time":"2026-02-01T14:44:03.668Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:03.668Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=input[name=\"zipcode\"] in page."}
+{"level":30,"time":"2026-02-01T14:44:05.060Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:05.064Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:44:05.064Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=input[name=\"name_on_account\"] in page."}
+{"level":30,"time":"2026-02-01T14:44:05.067Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:44:05.069Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:05.069Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=input[name=\"name_on_account\"] in page."}
+{"level":30,"time":"2026-02-01T14:44:05.075Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:05.078Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:44:05.078Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=#bankAccountInput in page."}
+{"level":30,"time":"2026-02-01T14:44:05.080Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:44:05.083Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:44:05.083Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=#routingNumInput in page."}
+{"level":30,"time":"2026-02-01T14:44:05.085Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:44:05.087Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:05.087Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=#bankAccountInput in page."}
+{"level":30,"time":"2026-02-01T14:44:05.097Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:05.100Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:05.100Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=#routingNumInput in page."}
+{"level":30,"time":"2026-02-01T14:44:05.107Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method fillText"}
+{"level":30,"time":"2026-02-01T14:44:05.111Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:44:05.111Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=input.submitField in page."}
+{"level":30,"time":"2026-02-01T14:44:05.117Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:44:05.119Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method click"}
+{"level":30,"time":"2026-02-01T14:44:05.119Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=input.submitField in page."}
+{"level":30,"time":"2026-02-01T14:44:06.510Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method click"}
+{"level":30,"time":"2026-02-01T14:44:07.534Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:44:07.534Z","pid":42956,"hostname":"SHASHANK","msg":"Strict mode is enabled, find Locator with css=input[name=\"resendEmail\"] in page."}
+{"level":30,"time":"2026-02-01T14:44:07.546Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method waitForElementState"}
+{"level":30,"time":"2026-02-01T14:44:07.552Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2026-02-01T14:44:07.554Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2026-02-01T14:44:07.555Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2026-02-01T14:44:07.556Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2026-02-01T14:44:07.558Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2026-02-01T14:44:07.559Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2026-02-01T14:44:07.562Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2026-02-01T14:44:07.564Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2026-02-01T14:44:07.566Z","pid":42956,"hostname":"SHASHANK","msg":"Changed active context: context=492c1a72-443a-4b12-ac08-7d8ec2333e22"}
+{"level":30,"time":"2026-02-01T14:44:07.566Z","pid":42956,"hostname":"SHASHANK","msg":"Changing current active page: page=eaeaee5d-14e1-456b-b76f-b501e6550757"}
+{"level":30,"time":"2026-02-01T14:44:07.566Z","pid":42956,"hostname":"SHASHANK","msg":"Changed active page"}
+{"level":30,"time":"2026-02-01T14:44:07.567Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method closeContext"}
+{"level":30,"time":"2026-02-01T14:44:07.572Z","pid":42956,"hostname":"SHASHANK","msg":"Removed page=b14e9a87-1abb-498c-94cc-54e25c0a841d from context=492c1a72-443a-4b12-ac08-7d8ec2333e22 page stack"}
+{"level":30,"time":"2026-02-01T14:44:07.573Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method closeContext"}
+{"level":30,"time":"2026-02-01T14:44:07.577Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2026-02-01T14:44:07.577Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method getBrowserCatalog"}
+{"level":30,"time":"2026-02-01T14:44:07.604Z","pid":42956,"hostname":"SHASHANK","msg":"Start of node method closeAllBrowsers"}
+{"level":30,"time":"2026-02-01T14:44:07.684Z","pid":42956,"hostname":"SHASHANK","msg":"End of node method closeAllBrowsers"}

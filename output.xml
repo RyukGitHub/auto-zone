@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.4.1 (Python 3.13.1 on win32)" generated="2026-02-01T20:13:52.517071" rpa="false" schemaversion="5">
+<suite id="s1" name="Join" source="D:\Personal\dumps-projects\automation\nf\tests\join.robot">
+<test id="s1-t1" name="TC01" line="6">
+<kw name="Open join page" owner="keywords">
+<kw name="New Page" owner="Browser">
+<msg time="2026-02-01T20:13:52.795405" level="INFO">Starting Browser process D:\Personal\dumps-projects\automation\nf\.venv\Lib\site-packages\Browser\wrapper\index.js using at 127.0.0.1:51270</msg>
+<msg time="2026-02-01T20:13:58.562837" level="INFO">Successfully initialized new page object and opened url: https://nfbusty.com/join?cascid=132</msg>
+<msg time="2026-02-01T20:13:58.562958" level="INFO">No browser and context was open. New browser and context was automatically opened when page is created.</msg>
+<arg>${url}</arg>
+<tag>BrowserControl</tag>
+<tag>Setter</tag>
+<doc>Open a new Page.</doc>
+<status status="PASS" start="2026-02-01T20:13:52.771126" elapsed="5.792044"/>
+</kw>
+<arg>https://nfbusty.com/join?cascid=132</arg>
+<status status="PASS" start="2026-02-01T20:13:52.770528" elapsed="5.792858"/>
+</kw>
+<kw name="Select 30 day membership and proceed to checkout" owner="keywords">
+<kw name="Close modal and select 30 day membership" owner="keywords">
+<kw name="Close consent modal if present" owner="keywords">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-02-01T20:13:58.567559" level="INFO">${btn} = css=div.modal-dialog button[data-bs-dismiss="modal"]:has-text("I agree")</msg>
+<var>${btn}</var>
+<arg>css=div.modal-dialog button[data-bs-dismiss="modal"]:has-text("I agree")</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.566879" elapsed="0.000716"/>
+</kw>
+<kw name="Get Element Count" owner="Browser">
+<msg time="2026-02-01T20:13:58.596412" level="INFO">${count} = 1</msg>
+<var>${count}</var>
+<arg>${btn}</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the count of elements found with ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.567979" elapsed="0.028481"/>
+</kw>
+<if>
+<branch type="IF" condition="${count} &gt; 0">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-01T20:13:58.608540" level="INFO">Waited for Element with selector css=div.modal-dialog button[data-bs-dismiss="modal"]:has-text("I agree") at state visible</msg>
+<arg>${btn}</arg>
+<arg>visible</arg>
+<arg>timeout=5s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.596997" elapsed="0.011682"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2026-02-01T20:13:58.609397" level="INFO">Clicks the element 'css=div.modal-dialog button[data-bs-dismiss="modal"]:has-text("I agree")'.</msg>
+<arg>${btn}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.608851" elapsed="0.038890"/>
+</kw>
+<status status="PASS" start="2026-02-01T20:13:58.596600" elapsed="0.051227"/>
+</branch>
+<status status="PASS" start="2026-02-01T20:13:58.596568" elapsed="0.051304"/>
+</if>
+<status status="PASS" start="2026-02-01T20:13:58.566188" elapsed="0.081737"/>
+</kw>
+<kw name="Select 30 day membership option" owner="keywords">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2026-02-01T20:13:58.648766" level="INFO">${option} = css=label.join-option:has-text("30 Day Membership")</msg>
+<var>${option}</var>
+<arg>css=label.join-option:has-text("30 Day Membership")</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.648452" elapsed="0.000339"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-01T20:13:58.656865" level="INFO">Waited for Element with selector css=label.join-option:has-text("30 Day Membership") at state visible</msg>
+<arg>${option}</arg>
+<arg>visible</arg>
+<arg>timeout=10s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.648888" elapsed="0.008112"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2026-02-01T20:13:58.657671" level="INFO">Clicks the element 'css=label.join-option:has-text("30 Day Membership")'.</msg>
+<arg>${option}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.657158" elapsed="0.172592"/>
+</kw>
+<doc>Select the "30 Day Membership" plan after the modal is closed.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.648074" elapsed="0.181790"/>
+</kw>
+<doc>Close the modal if shown, then select the 30 day plan.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.565369" elapsed="0.264540"/>
+</kw>
+<kw name="Enter email and password and proceed to checkout" owner="keywords">
+<kw name="Get Element Count" owner="Browser">
+<msg time="2026-02-01T20:13:58.835522" level="INFO">${emailCount} = 1</msg>
+<var>${emailCount}</var>
+<arg>css=#UsernamePromptEmail</arg>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the count of elements found with ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.830654" elapsed="0.004959"/>
+</kw>
+<if>
+<branch type="IF" condition="${emailCount} &gt; 0">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-01T20:13:59.058080" level="INFO">Waited for Element with selector css=#UsernamePromptEmail at state visible</msg>
+<arg>css=#UsernamePromptEmail</arg>
+<arg>visible</arg>
+<arg>timeout=15s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.836807" elapsed="0.221413"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-01T20:13:59.063974" level="INFO">Waited for Element with selector css=#UsernamePromptPassword at state visible</msg>
+<arg>css=#UsernamePromptPassword</arg>
+<arg>visible</arg>
+<arg>timeout=15s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-01T20:13:59.058398" elapsed="0.005700"/>
+</kw>
+<if>
+<branch type="IF" condition="'${email}' == '${EMPTY}'">
+<kw name="Get Time" owner="BuiltIn">
+<var>${epoch}</var>
+<arg>epoch</arg>
+<doc>Returns the given time in the requested format.</doc>
+<status status="NOT RUN" start="2026-02-01T20:13:59.064843" elapsed="0.000083"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${email}</var>
+<arg>test${epoch}@yopmail.com</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2026-02-01T20:13:59.065015" elapsed="0.000057"/>
+</kw>
+<status status="NOT RUN" start="2026-02-01T20:13:59.064206" elapsed="0.000898"/>
+</branch>
+<status status="PASS" start="2026-02-01T20:13:59.064185" elapsed="0.000955"/>
+</if>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-01T20:13:59.065581" level="INFO">Fills the text 'testyop@yopmail.com' in the given field.</msg>
+<arg>css=#UsernamePromptEmail</arg>
+<arg>${email}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:13:59.065203" elapsed="0.011751"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-01T20:13:59.077602" level="INFO">Fills the text 'ruby1234' in the given field.</msg>
+<arg>css=#UsernamePromptPassword</arg>
+<arg>${password}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:13:59.077118" elapsed="0.014838"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Email used: ${email}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T20:13:59.092260" elapsed="0.000735"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-01T20:13:59.097975" level="INFO">Waited for Element with selector css=button#Checkout at state visible</msg>
+<arg>css=button#Checkout</arg>
+<arg>visible</arg>
+<arg>timeout=15s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-01T20:13:59.093142" elapsed="0.004949"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2026-02-01T20:13:59.098615" level="INFO">Clicks the element 'css=button#Checkout'.</msg>
+<arg>css=button#Checkout</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:13:59.098219" elapsed="0.291493"/>
+</kw>
+<kw name="Verify redirected to CCBill signup" owner="keywords">
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Current URL should start with" owner="keywords">
+<kw name="Get Url" owner="Browser">
+<msg time="2026-02-01T20:13:59.393211" level="INFO">${url} = https://nfbusty.com/join?cascid=132</msg>
+<var>${url}</var>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the current URL.</doc>
+<status status="PASS" start="2026-02-01T20:13:59.391056" elapsed="0.002192"/>
+</kw>
+<kw name="Should Start With" owner="BuiltIn">
+<msg time="2026-02-01T20:13:59.393908" level="FAIL">'https://nfbusty.com/join?cascid=132' does not start with 'https://bill.ccbill.com/jpost/signup'</msg>
+<arg>${url}</arg>
+<arg>${prefix}</arg>
+<doc>Fails if the string ``str1`` does not start with the string ``str2``.</doc>
+<status status="FAIL" start="2026-02-01T20:13:59.393380" elapsed="0.000646">'https://nfbusty.com/join?cascid=132' does not start with 'https://bill.ccbill.com/jpost/signup'</status>
+</kw>
+<arg>${prefix}</arg>
+<status status="FAIL" start="2026-02-01T20:13:59.390811" elapsed="0.003318">'https://nfbusty.com/join?cascid=132' does not start with 'https://bill.ccbill.com/jpost/signup'</status>
+</kw>
+<kw name="Current URL should start with" owner="keywords">
+<kw name="Get Url" owner="Browser">
+<msg time="2026-02-01T20:14:00.400701" level="INFO">${url} = https://nfbusty.com/join?cascid=132</msg>
+<var>${url}</var>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the current URL.</doc>
+<status status="PASS" start="2026-02-01T20:14:00.395854" elapsed="0.004940"/>
+</kw>
+<kw name="Should Start With" owner="BuiltIn">
+<msg time="2026-02-01T20:14:00.401941" level="FAIL">'https://nfbusty.com/join?cascid=132' does not start with 'https://bill.ccbill.com/jpost/signup'</msg>
+<arg>${url}</arg>
+<arg>${prefix}</arg>
+<doc>Fails if the string ``str1`` does not start with the string ``str2``.</doc>
+<status status="FAIL" start="2026-02-01T20:14:00.401089" elapsed="0.000997">'https://nfbusty.com/join?cascid=132' does not start with 'https://bill.ccbill.com/jpost/signup'</status>
+</kw>
+<arg>${prefix}</arg>
+<status status="FAIL" start="2026-02-01T20:14:00.394831" elapsed="0.007495">'https://nfbusty.com/join?cascid=132' does not start with 'https://bill.ccbill.com/jpost/signup'</status>
+</kw>
+<kw name="Current URL should start with" owner="keywords">
+<kw name="Get Url" owner="Browser">
+<msg time="2026-02-01T20:14:01.408244" level="INFO">${url} = https://nfbusty.com/join?cascid=132</msg>
+<var>${url}</var>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the current URL.</doc>
+<status status="PASS" start="2026-02-01T20:14:01.404344" elapsed="0.003963"/>
+</kw>
+<kw name="Should Start With" owner="BuiltIn">
+<msg time="2026-02-01T20:14:01.409225" level="FAIL">'https://nfbusty.com/join?cascid=132' does not start with 'https://bill.ccbill.com/jpost/signup'</msg>
+<arg>${url}</arg>
+<arg>${prefix}</arg>
+<doc>Fails if the string ``str1`` does not start with the string ``str2``.</doc>
+<status status="FAIL" start="2026-02-01T20:14:01.408525" elapsed="0.000795">'https://nfbusty.com/join?cascid=132' does not start with 'https://bill.ccbill.com/jpost/signup'</status>
+</kw>
+<arg>${prefix}</arg>
+<status status="FAIL" start="2026-02-01T20:14:01.403438" elapsed="0.006036">'https://nfbusty.com/join?cascid=132' does not start with 'https://bill.ccbill.com/jpost/signup'</status>
+</kw>
+<kw name="Current URL should start with" owner="keywords">
+<kw name="Get Url" owner="Browser">
+<msg time="2026-02-01T20:14:02.417273" level="INFO">${url} = https://nfbusty.com/join?cascid=132</msg>
+<var>${url}</var>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the current URL.</doc>
+<status status="PASS" start="2026-02-01T20:14:02.411222" elapsed="0.006180"/>
+</kw>
+<kw name="Should Start With" owner="BuiltIn">
+<msg time="2026-02-01T20:14:02.418476" level="FAIL">'https://nfbusty.com/join?cascid=132' does not start with 'https://bill.ccbill.com/jpost/signup'</msg>
+<arg>${url}</arg>
+<arg>${prefix}</arg>
+<doc>Fails if the string ``str1`` does not start with the string ``str2``.</doc>
+<status status="FAIL" start="2026-02-01T20:14:02.417661" elapsed="0.000929">'https://nfbusty.com/join?cascid=132' does not start with 'https://bill.ccbill.com/jpost/signup'</status>
+</kw>
+<arg>${prefix}</arg>
+<status status="FAIL" start="2026-02-01T20:14:02.410287" elapsed="0.008493">'https://nfbusty.com/join?cascid=132' does not start with 'https://bill.ccbill.com/jpost/signup'</status>
+</kw>
+<kw name="Current URL should start with" owner="keywords">
+<kw name="Get Url" owner="Browser">
+<msg time="2026-02-01T20:14:03.425734" level="INFO">${url} = https://bill.ccbill.com/jpost/signup.cgi?clientAccnum=944879&amp;clientSubacc=0006&amp;formName=211ck&amp;language=English&amp;allowedTypes=0000011174:840,0000002986:840,0000036810:840,0000594439:840,0000000035:840&amp;s...</msg>
+<var>${url}</var>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the current URL.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.421046" elapsed="0.004783"/>
+</kw>
+<kw name="Should Start With" owner="BuiltIn">
+<arg>${url}</arg>
+<arg>${prefix}</arg>
+<doc>Fails if the string ``str1`` does not start with the string ``str2``.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.426128" elapsed="0.000922"/>
+</kw>
+<arg>${prefix}</arg>
+<status status="PASS" start="2026-02-01T20:14:03.419888" elapsed="0.007314"/>
+</kw>
+<arg>30s</arg>
+<arg>1s</arg>
+<arg>Current URL should start with</arg>
+<arg>${prefix}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2026-02-01T20:13:59.390343" elapsed="4.036945"/>
+</kw>
+<kw name="Get Url" owner="Browser">
+<msg time="2026-02-01T20:14:03.430379" level="INFO">${finalUrl} = https://bill.ccbill.com/jpost/signup.cgi?clientAccnum=944879&amp;clientSubacc=0006&amp;formName=211ck&amp;language=English&amp;allowedTypes=0000011174:840,0000002986:840,0000036810:840,0000594439:840,0000000035:840&amp;s...</msg>
+<var>${finalUrl}</var>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the current URL.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.427505" elapsed="0.002928"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Redirected URL: ${finalUrl}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.430617" elapsed="0.000954"/>
+</kw>
+<doc>Verify redirect to CCBill signup page and log the final URL.</doc>
+<status status="PASS" start="2026-02-01T20:13:59.389950" elapsed="4.041739"/>
+</kw>
+<kw name="Fill CCBill personal details" owner="keywords">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-01T20:14:03.564025" level="INFO">Waited for Element with selector css=input[name="customer_fname"] at state visible</msg>
+<arg>css=input[name="customer_fname"]</arg>
+<arg>visible</arg>
+<arg>timeout=30s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.432329" elapsed="0.131814"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-01T20:14:03.564827" level="INFO">Fills the text 'Robin' in the given field.</msg>
+<arg>css=input[name="customer_fname"]</arg>
+<arg>${first}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.564375" elapsed="0.010717"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-01T20:14:03.575788" level="INFO">Fills the text 'Mon' in the given field.</msg>
+<arg>css=input[name="customer_lname"]</arg>
+<arg>${last}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.575263" elapsed="0.006769"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-01T20:14:03.582711" level="INFO">Fills the text '55 E 10th St' in the given field.</msg>
+<arg>css=input[name="address1"]</arg>
+<arg>${address}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.582205" elapsed="0.007568"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-01T20:14:03.590466" level="INFO">Fills the text 'New York' in the given field.</msg>
+<arg>css=input[name="city"]</arg>
+<arg>${city}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.589946" elapsed="0.007103"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Select Options By" owner="Browser">
+<msg time="2026-02-01T20:14:03.598055" level="INFO">Selects the option(s) New York by attribute SelectAttribute.label from element css=#stateId.</msg>
+<arg>css=#stateId</arg>
+<arg>label</arg>
+<arg>${state}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Selects options from select element found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.597656" elapsed="0.031497"/>
+</kw>
+<arg>Select Options By</arg>
+<arg>css=#stateId</arg>
+<arg>label</arg>
+<arg>${state}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.597228" elapsed="0.032030"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Select Options By" owner="Browser">
+<msg time="2026-02-01T20:14:03.630100" level="INFO">Selects the option(s) NY by attribute SelectAttribute.value from element css=#stateId.</msg>
+<arg>css=#stateId</arg>
+<arg>value</arg>
+<arg>NY</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Selects options from select element found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.629771" elapsed="0.018960"/>
+</kw>
+<arg>Select Options By</arg>
+<arg>css=#stateId</arg>
+<arg>value</arg>
+<arg>NY</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.629371" elapsed="0.019458"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Select Options By" owner="Browser">
+<msg time="2026-02-01T20:14:03.649773" level="INFO">Selects the option(s) United States by attribute SelectAttribute.label from element css=#countryId.</msg>
+<arg>css=#countryId</arg>
+<arg>label</arg>
+<arg>${country}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Selects options from select element found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.649369" elapsed="0.012822"/>
+</kw>
+<arg>Select Options By</arg>
+<arg>css=#countryId</arg>
+<arg>label</arg>
+<arg>${country}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.648949" elapsed="0.013341"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" owner="BuiltIn">
+<kw name="Select Options By" owner="Browser">
+<msg time="2026-02-01T20:14:03.663208" level="INFO">Selects the option(s) US by attribute SelectAttribute.value from element css=#countryId.</msg>
+<arg>css=#countryId</arg>
+<arg>value</arg>
+<arg>US</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Selects options from select element found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.662850" elapsed="0.011103"/>
+</kw>
+<arg>Select Options By</arg>
+<arg>css=#countryId</arg>
+<arg>value</arg>
+<arg>US</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.662412" elapsed="0.011642"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-01T20:14:03.674689" level="INFO">Fills the text '10003' in the given field.</msg>
+<arg>css=input[name="zipcode"]</arg>
+<arg>${zip}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.674182" elapsed="1.394497"/>
+</kw>
+<doc>Fill CCBill signup personal info after redirect.</doc>
+<status status="PASS" start="2026-02-01T20:14:03.431892" elapsed="1.636961"/>
+</kw>
+<kw name="Fill CCBill payment details" owner="keywords">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-01T20:14:05.074502" level="INFO">Waited for Element with selector css=input[name="name_on_account"] at state visible</msg>
+<arg>css=input[name="name_on_account"]</arg>
+<arg>visible</arg>
+<arg>timeout=30s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-01T20:14:05.069515" elapsed="0.005107"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-01T20:14:05.075250" level="INFO">Fills the text 'Robin Mon' in the given field.</msg>
+<arg>css=input[name="name_on_account"]</arg>
+<arg>${name_on_account}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:05.074768" elapsed="0.008111"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-01T20:14:05.088144" level="INFO">Waited for Element with selector css=#bankAccountInput at state visible</msg>
+<arg>css=#bankAccountInput</arg>
+<arg>visible</arg>
+<arg>timeout=30s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-01T20:14:05.083058" elapsed="0.005213"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-01T20:14:05.092490" level="INFO">Waited for Element with selector css=#routingNumInput at state visible</msg>
+<arg>css=#routingNumInput</arg>
+<arg>visible</arg>
+<arg>timeout=30s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-01T20:14:05.088428" elapsed="0.004176"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-01T20:14:05.093222" level="INFO">Fills the text '117243247861590' in the given field.</msg>
+<arg>css=#bankAccountInput</arg>
+<arg>${account_num}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:05.092747" elapsed="0.012523"/>
+</kw>
+<kw name="Fill Text" owner="Browser">
+<msg time="2026-02-01T20:14:05.105957" level="INFO">Fills the text '073906131' in the given field.</msg>
+<arg>css=#routingNumInput</arg>
+<arg>${routing_num}</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Clears and fills the given ``txt`` into the text field found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:05.105445" elapsed="0.009773"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Account used: ${account_num} | Routing used: ${routing_num}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T20:14:05.115448" elapsed="0.000727"/>
+</kw>
+<arg>account_num=${acno}</arg>
+<arg>routing_num=${rtno}</arg>
+<doc>Fill CCBill payment info fields (ACH) after redirect.</doc>
+<status status="PASS" start="2026-02-01T20:14:05.069031" elapsed="0.047240"/>
+</kw>
+<kw name="Click submit order" owner="keywords">
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-01T20:14:05.124313" level="INFO">Waited for Element with selector css=input.submitField at state visible</msg>
+<arg>css=input.submitField</arg>
+<arg>visible</arg>
+<arg>timeout=30s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-01T20:14:05.116717" elapsed="0.007731"/>
+</kw>
+<kw name="Click" owner="Browser">
+<msg time="2026-02-01T20:14:05.125111" level="INFO">Clicks the element 'css=input.submitField'.</msg>
+<arg>css=input.submitField</arg>
+<tag>PageContent</tag>
+<tag>Setter</tag>
+<doc>Simulates mouse click on the element found by ``selector``.</doc>
+<status status="PASS" start="2026-02-01T20:14:05.124611" elapsed="1.393480"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Clicked: Submit Order</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T20:14:06.518272" elapsed="0.001271"/>
+</kw>
+<kw name="Verify email notification page" owner="keywords">
+<kw name="Wait Until Keyword Succeeds" owner="BuiltIn">
+<kw name="Current URL should start with" owner="keywords">
+<kw name="Get Url" owner="Browser">
+<msg time="2026-02-01T20:14:06.524978" level="INFO">${url} = https://bill.ccbill.com/jpost/confirmSignup.cgi</msg>
+<var>${url}</var>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the current URL.</doc>
+<status status="PASS" start="2026-02-01T20:14:06.522234" elapsed="0.002782"/>
+</kw>
+<kw name="Should Start With" owner="BuiltIn">
+<msg time="2026-02-01T20:14:06.525552" level="FAIL">'https://bill.ccbill.com/jpost/confirmSignup.cgi' does not start with 'https://bill.ccbill.com/jpost/emailNotification.cgi'</msg>
+<arg>${url}</arg>
+<arg>${prefix}</arg>
+<doc>Fails if the string ``str1`` does not start with the string ``str2``.</doc>
+<status status="FAIL" start="2026-02-01T20:14:06.525150" elapsed="0.000474">'https://bill.ccbill.com/jpost/confirmSignup.cgi' does not start with 'https://bill.ccbill.com/jpost/emailNotification.cgi'</status>
+</kw>
+<arg>https://bill.ccbill.com/jpost/emailNotification.cgi</arg>
+<status status="FAIL" start="2026-02-01T20:14:06.521174" elapsed="0.004548">'https://bill.ccbill.com/jpost/confirmSignup.cgi' does not start with 'https://bill.ccbill.com/jpost/emailNotification.cgi'</status>
+</kw>
+<kw name="Current URL should start with" owner="keywords">
+<kw name="Get Url" owner="Browser">
+<msg time="2026-02-01T20:14:07.533706" level="INFO">${url} = https://bill.ccbill.com/jpost/emailNotification.cgi</msg>
+<var>${url}</var>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the current URL.</doc>
+<status status="PASS" start="2026-02-01T20:14:07.528544" elapsed="0.005241"/>
+</kw>
+<kw name="Should Start With" owner="BuiltIn">
+<arg>${url}</arg>
+<arg>${prefix}</arg>
+<doc>Fails if the string ``str1`` does not start with the string ``str2``.</doc>
+<status status="PASS" start="2026-02-01T20:14:07.534057" elapsed="0.000900"/>
+</kw>
+<arg>https://bill.ccbill.com/jpost/emailNotification.cgi</arg>
+<status status="PASS" start="2026-02-01T20:14:07.527201" elapsed="0.007913"/>
+</kw>
+<arg>45s</arg>
+<arg>1s</arg>
+<arg>Current URL should start with</arg>
+<arg>https://bill.ccbill.com/jpost/emailNotification.cgi</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<status status="PASS" start="2026-02-01T20:14:06.520279" elapsed="1.014921"/>
+</kw>
+<kw name="Get Url" owner="Browser">
+<msg time="2026-02-01T20:14:07.538590" level="INFO">${finalUrl} = https://bill.ccbill.com/jpost/emailNotification.cgi</msg>
+<var>${finalUrl}</var>
+<tag>Assertion</tag>
+<tag>Getter</tag>
+<tag>PageContent</tag>
+<doc>Returns the current URL.</doc>
+<status status="PASS" start="2026-02-01T20:14:07.535391" elapsed="0.003256"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>Redirected URL: ${finalUrl}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T20:14:07.538822" elapsed="0.000942"/>
+</kw>
+<kw name="Wait For Elements State" owner="Browser">
+<msg time="2026-02-01T20:14:07.553834" level="INFO">Waited for Element with selector css=input[name="resendEmail"] at state visible</msg>
+<arg>css=input[name="resendEmail"]</arg>
+<arg>visible</arg>
+<arg>timeout=30s</arg>
+<tag>PageContent</tag>
+<tag>Wait</tag>
+<doc>Waits for the element found by ``selector`` to satisfy state option.</doc>
+<status status="PASS" start="2026-02-01T20:14:07.539950" elapsed="0.014025"/>
+</kw>
+<kw name="Log To Console" owner="BuiltIn">
+<arg>PASS: Resend Email button is visible</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" start="2026-02-01T20:14:07.554129" elapsed="0.000717"/>
+</kw>
+<doc>Verify redirect to email notification page and Resend Email button is visible.</doc>
+<status status="PASS" start="2026-02-01T20:14:06.519881" elapsed="1.035061"/>
+</kw>
+<doc>Click CCBill "Submit Order" button.</doc>
+<status status="PASS" start="2026-02-01T20:14:05.116416" elapsed="2.438572"/>
+</kw>
+<status status="PASS" start="2026-02-01T20:13:58.836034" elapsed="8.718980"/>
+</branch>
+<status status="PASS" start="2026-02-01T20:13:58.835955" elapsed="8.719098"/>
+</if>
+<arg>${password}</arg>
+<arg>${email}</arg>
+<arg>${acno}</arg>
+<arg>${rtno}</arg>
+<doc>If the username prompt modal appears, fill email/password, click Proceed to Checkout, and log the email.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.830134" elapsed="8.724949"/>
+</kw>
+<doc>Close consent modal, select 30 day membership, fill email/password if prompted, proceed to checkout.</doc>
+<status status="PASS" start="2026-02-01T20:13:58.564051" elapsed="8.991073"/>
+</kw>
+<msg time="2026-02-01T20:14:07.567451" level="INFO">Switching context to context=492c1a72-443a-4b12-ac08-7d8ec2333e22 in CURRENT</msg>
+<msg time="2026-02-01T20:14:07.574143" level="INFO">Successfully changed active context: context=492c1a72-443a-4b12-ac08-7d8ec2333e22</msg>
+<msg time="2026-02-01T20:14:07.580987" level="INFO">Successfully closed Context</msg>
+<status status="PASS" start="2026-02-01T20:13:52.769736" elapsed="14.786019"/>
+</test>
+<status status="PASS" start="2026-02-01T20:13:52.518573" elapsed="15.063289"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Join" id="s1" pass="1" fail="0" skip="0">Join</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
