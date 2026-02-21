@@ -4,7 +4,7 @@ Resource   ../resources/keywords.robot
 Suite Setup    Setup Site Configuration
 
 *** Variables ***
-${SITE_NAME}    nfbusty
+${SITE_NAME}    brattysis
 
 *** Test Cases ***
 TC01

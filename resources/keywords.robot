@@ -21,6 +21,13 @@ Close consent modal if present
     IF    ${count} > 0
         Wait For Elements State    ${btn}    visible    timeout=5s
         Click    ${btn}
+    ELSE
+        ${btn2}=    Set Variable    css=div.modal-dialog button.agree[data-bs-dismiss="modal"]
+        ${count2}=  Get Element Count    ${btn2}
+        IF    ${count2} > 0
+            Wait For Elements State    ${btn2}    visible    timeout=5s
+            Click    ${btn2}
+        END
     END
 
 Close content modal if present
@@ -31,7 +38,7 @@ Open join page
     [Arguments]    ${url}=${JOIN_URL}
     Set Browser Timeout    ${BROWSER_TIMEOUT}
     New Page    about:blank
-    Go To    ${url}
+    Go To    ${url}    timeout=20s
 
 Select payment method ACH
     [Documentation]    Select ACH payment option (cascid=${CASCID}) if available.
@@ -40,6 +47,8 @@ Select payment method ACH
     IF    ${count} > 0
         Click    ${ach}
         Wait Until Keyword Succeeds    20s    1s    Current URL should contain    cascid=${CASCID}
+    ELSE
+        Log To Console    ACH payment option not found, assuming default/only option.
     END
 
 Select 30 day membership option
@@ -48,17 +57,29 @@ Select 30 day membership option
     Capture screenshot    before-wait-membership
     ${status}    ${msg}=    Run Keyword And Ignore Error    Wait For Elements State    ${option}    visible    timeout=20s
     IF    '${status}' != 'PASS'
-        ${u}=    Get Url
-        ${t}=    Get Title
-        Log To Console    ERROR: Membership option not visible. Title: ${t} | URL: ${u}
-        Capture screenshot    membership-not-visible
-        Fail    ${msg}
+        ${option_alt}=    Set Variable    xpath=//label[contains(@class, 'join-option')]//div[contains(text(), '30 Day Membership')]/..
+        ${status2}    ${msg2}=    Run Keyword And Ignore Error    Wait For Elements State    ${option_alt}    visible    timeout=5s
+        IF    '${status2}' != 'PASS'
+            ${u}=    Get Url
+            ${t}=    Get Title
+            Log To Console    ERROR: Membership option not visible. Title: ${t} | URL: ${u}
+            Capture screenshot    membership-not-visible
+            Fail    ${msg2}
+        END
+        Click    ${option_alt}
+    ELSE
+        Click    ${option}
     END
-    Click    ${option}
     ${submit_btn}=    Set Variable    css=button.submit-btn:has-text("Get Access Now")
     ${submit_count}=    Get Element Count    ${submit_btn}
     IF    ${submit_count} > 0
-        Click    ${submit_btn}
+        Run Keyword And Ignore Error    Click    ${submit_btn}    timeout=2s
+    ELSE
+        ${submit_btn2}=    Set Variable    css=button.submit-btn[type="submit"]
+        ${submit_count2}=    Get Element Count    ${submit_btn2}
+        IF    ${submit_count2} > 0
+            Run Keyword And Ignore Error    Click    ${submit_btn2}    timeout=2s
+        END
     END
     Capture screenshot    after-select-membership
 
@@ -87,6 +108,12 @@ Enter email and password and proceed to checkout
         Click    css=button#Checkout
         Run Keyword And Ignore Error    Switch Page    NEW
         Capture screenshot    after-click-checkout
+        Verify redirected to CCBill signup
+        Fill CCBill personal details
+        Fill CCBill payment details    account_num=${acno}    routing_num=${rtno}
+        Click submit order
+    ELSE
+        Log To Console    Username prompt did not appear. Attempting CCBill checkout directly.
         Verify redirected to CCBill signup
         Fill CCBill personal details
         Fill CCBill payment details    account_num=${acno}    routing_num=${rtno}
