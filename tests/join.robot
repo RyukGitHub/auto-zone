@@ -1,9 +1,16 @@
 *** Settings ***
 Library    Browser
 Resource   ../resources/keywords.robot
+Suite Setup    Setup Site Configuration
+
+*** Variables ***
+${SITE_NAME}    nfbusty
 
 *** Test Cases ***
 TC01
-    Open join page    https://nfbusty.com/join?cascid=132
+    Open join page    ${JOIN_URL}
     Select 30 day membership and proceed to checkout
 
+*** Keywords ***
+Setup Site Configuration
+    Import Resource    ${EXECDIR}/resources/sites/${SITE_NAME}.robot

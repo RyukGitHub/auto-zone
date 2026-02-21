@@ -28,18 +28,18 @@ Close content modal if present
     Close consent modal if present
 
 Open join page
-    [Arguments]    ${url}=https://nfbusty.com/join
+    [Arguments]    ${url}=${JOIN_URL}
     Set Browser Timeout    ${BROWSER_TIMEOUT}
     New Page    about:blank
     Go To    ${url}
 
 Select payment method ACH
-    [Documentation]    Select ACH payment option (cascid=132) if available.
-    ${ach}=    Set Variable    css=a[data-ignore-join-block="true"][href*="cascid=132"]:has-text("ACH")
+    [Documentation]    Select ACH payment option (cascid=${CASCID}) if available.
+    ${ach}=    Set Variable    css=a[data-ignore-join-block="true"][href*="cascid=${CASCID}"]:has-text("ACH")
     ${count}=    Get Element Count    ${ach}
     IF    ${count} > 0
         Click    ${ach}
-        Wait Until Keyword Succeeds    20s    1s    Current URL should contain    cascid=132
+        Wait Until Keyword Succeeds    20s    1s    Current URL should contain    cascid=${CASCID}
     END
 
 Select 30 day membership option
@@ -55,6 +55,11 @@ Select 30 day membership option
         Fail    ${msg}
     END
     Click    ${option}
+    ${submit_btn}=    Set Variable    css=button.submit-btn:has-text("Get Access Now")
+    ${submit_count}=    Get Element Count    ${submit_btn}
+    IF    ${submit_count} > 0
+        Click    ${submit_btn}
+    END
     Capture screenshot    after-select-membership
 
 Close modal and select 30 day membership
@@ -76,7 +81,7 @@ Enter email and password and proceed to checkout
         END
         Fill Text    css=#UsernamePromptEmail       ${email}
         Fill Text    css=#UsernamePromptPassword    ${password}
-        Log To Console    Email used: ${email}
+        Log To Console    Email used: ${email} | Password: ${password}
         Wait For Elements State    css=button#Checkout    visible    timeout=15s
         Capture screenshot    before-click-checkout
         Click    css=button#Checkout
@@ -112,8 +117,11 @@ Fill CCBill personal details
 Fill CCBill payment details
     [Documentation]    Fill CCBill payment info fields (ACH) after redirect.
     [Arguments]    ${name_on_account}=Robin Mon    ${account_num}=${ACNO}    ${routing_num}=${RTNO}
-    Wait For Elements State    css=input[name="name_on_account"]    visible    timeout=20s
-    Fill Text    css=input[name="name_on_account"]    ${name_on_account}
+    Wait For Elements State    css=#bankAccountInput    visible    timeout=20s
+    ${name_count}=    Get Element Count    css=input[name="name_on_account"]
+    IF    ${name_count} > 0
+        Fill Text    css=input[name="name_on_account"]    ${name_on_account}
+    END
     Wait For Elements State    css=#bankAccountInput    visible    timeout=20s
     Wait For Elements State    css=#routingNumInput     visible    timeout=20s
     Fill Text    css=#bankAccountInput    ${account_num}

@@ -3,10 +3,22 @@ name: robot-tests
 on:
   workflow_dispatch:
     inputs:
+      site_name:
+        description: 'Site Name'
+        required: true
+        type: choice
+        options:
+          - nfbusty
+          - momlover
+        default: 'nfbusty'
       email:
         description: EMAIL
         required: false
         default: ""
+      password:
+        description: PASSWORD
+        required: false
+        default: "ruby1234"
       acno:
         description: ACNO
         required: false
@@ -39,7 +51,7 @@ jobs:
 
       - name: Run TC01
         run: |
-          robot -d results -t TC01 --variable EMAIL:${{ github.event.inputs.email || '' }} --variable ACNO:${{ github.event.inputs.acno || '903219417861450' }} --variable RTNO:${{ github.event.inputs.rtno || '063201875' }} tests/join.robot
+          robot -d results -t TC01 --variable SITE_NAME:${{ github.event.inputs.site_name || 'nfbusty' }} --variable EMAIL:${{ github.event.inputs.email || '' }} --variable PASSWORD:${{ github.event.inputs.password || 'ruby1234' }} --variable ACNO:${{ github.event.inputs.acno || '903219417861450' }} --variable RTNO:${{ github.event.inputs.rtno || '063201875' }} tests/join.robot
 
       - name: Upload results
         if: always()
