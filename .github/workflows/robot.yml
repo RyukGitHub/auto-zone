@@ -55,7 +55,7 @@ jobs:
 
       - name: Get Playwright Browser Path
         id: playwright-path
-        run: echo "path=$(python -c 'import Browser; print(Browser.__path__[0] + \"/wrapper\")')" >> $GITHUB_OUTPUT
+        run: echo "path=$(python -c 'import Browser; print(Browser.__path__[0] + "/wrapper")')" >> $GITHUB_OUTPUT
 
       - name: Cache Playwright Browser Binaries
         if: github.event.inputs.use_cache == 'true'
