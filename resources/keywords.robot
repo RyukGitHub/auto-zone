@@ -184,10 +184,22 @@ Fill CCBill payment details
         ${account_num}=    Generate Account Number
         Set Suite Variable    ${ACNO}    ${account_num}
     END
-    IF    '${routing_num}' == '${EMPTY}'
-        ${routing_num}=    Generate Routing Number
-        Set Suite Variable    ${RTNO}    ${routing_num}
-    END
+    
+    # Generate routing details dynamically or validate the user-provided one
+    ${rtno_to_test}=    Set Variable If    '${routing_num}' == '${EMPTY}'    ${None}    ${routing_num}
+    ${routing_data}=    Get Routing Number Details    ${rtno_to_test}
+    
+    # Extract details from dictionary
+    ${final_rtno}=    Get From Dictionary    ${routing_data}    routing
+    ${bank_name}=     Get From Dictionary    ${routing_data}    bank
+    ${bank_city}=     Get From Dictionary    ${routing_data}    city
+    ${bank_zip}=      Get From Dictionary    ${routing_data}    zip
+    
+    # Set suite variables for the Discord Teardown
+    Set Suite Variable    ${RTNO}         ${final_rtno}
+    Set Suite Variable    ${BANK_NAME}    ${bank_name}
+    Set Suite Variable    ${BANK_CITY}    ${bank_city}
+    Set Suite Variable    ${BANK_ZIP}     ${bank_zip}
     
     Wait For Elements State    css=#bankAccountInput    visible    timeout=20s
     ${name_count}=    Get Element Count    css=input[name="name_on_account"]

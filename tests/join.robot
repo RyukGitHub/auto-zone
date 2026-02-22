@@ -1,5 +1,6 @@
 *** Settings ***
 Library    Browser
+Library    Collections
 Library    ${EXECDIR}/resources/DiscordNotifier.py
 Library    ${EXECDIR}/resources/Generator.py
 Resource   ../resources/keywords.robot
@@ -12,7 +13,7 @@ ${SITE_NAME}    thepovgod
 TC01
     Open join page    ${JOIN_URL}
     ${final_email}=    Select 30 day membership and proceed to checkout
-    [Teardown]    Send Discord Notification    ${TEST STATUS}    ${SITE_NAME}    ${final_email}    ${PASSWORD}    ${ACNO}    ${RTNO}
+    [Teardown]    Send Discord Notification    ${TEST STATUS}    ${SITE_NAME}    ${final_email}    ${PASSWORD}    ${ACNO}    ${RTNO}    ${BANK_NAME}    ${BANK_CITY}    ${BANK_ZIP}
 
 *** Keywords ***
 Setup Site Configuration
