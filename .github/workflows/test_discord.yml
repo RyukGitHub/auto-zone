@@ -1,0 +1,26 @@
+name: Test Discord Webhook
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test_discord_connection:
+    name: Ping Discord Webhook
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Test Message to Discord
+        env:
+          ACH_DISCORD_WEBHOOK_URL: ${{ secrets.ACH_DISCORD_WEBHOOK_URL }}
+        run: |
+          if [ -z "$ACH_DISCORD_WEBHOOK_URL" ]; then
+            echo "::error::ACH_DISCORD_WEBHOOK_URL secret is not set! Please add it to Settings -> Secrets and variables -> Actions."
+            exit 1
+          fi
+          
+          echo "Sending test ping to Discord Webhook..."
+          
+          curl -H "Content-Type: application/json" \
+               -d '{"content": "🔔 **Webhook Connection Test**\nIf you are seeing this message, your GitHub Actions secret is configured correctly!"}' \
+               $ACH_DISCORD_WEBHOOK_URL
+          
+          echo "Test complete!"
