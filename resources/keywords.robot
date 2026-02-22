@@ -21,6 +21,7 @@ Close consent modal if present
     IF    ${count} > 0
         Log To Console    Found "I agree" modal, clicking it...
         Wait For Elements State    ${btn}    visible    timeout=5s
+        Sleep    1s
         Click    ${btn}
     ELSE
         ${btn2}=    Set Variable    css=button.agree:has-text("I agree")
@@ -28,6 +29,7 @@ Close consent modal if present
         IF    ${count2} > 0
             Log To Console    Found alternative consent modal, clicking it...
             Wait For Elements State    ${btn2}    visible    timeout=5s
+            Sleep    1s
             Click    ${btn2}
         ELSE
             ${btn3}=    Set Variable    css=button.btn-primary.agree
@@ -35,10 +37,12 @@ Close consent modal if present
             IF    ${count3} > 0
                 Log To Console    Found tertiary consent modal button, clicking it...
                 Wait For Elements State    ${btn3}    visible    timeout=5s
+                Sleep    1s
                 Click    ${btn3}
             END
         END
     END
+    Sleep    2s
 
 Close content modal if present
     [Documentation]    Backwards-compatible alias.
