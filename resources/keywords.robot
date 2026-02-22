@@ -140,9 +140,12 @@ Verify redirected to CCBill signup
 Fill CCBill personal details
     [Documentation]    Fill CCBill signup personal info after redirect.
     [Arguments]    ${first}=Robin    ${last}=Mon    ${address}=55 E 10th St    ${city}=New York    ${state}=New York    ${country}=United States    ${zip}=10003
-    Wait For Elements State    css=input[name="customer_fname"]    visible    timeout=20s
-    Fill Text    css=input[name="customer_fname"]    ${first}
-    Fill Text    css=input[name="customer_lname"]    ${last}
+    Wait For Elements State    css=input[name="address1"]    visible    timeout=20s
+    ${fname_count}=    Get Element Count    css=input[name="customer_fname"]
+    IF    ${fname_count} > 0
+        Fill Text    css=input[name="customer_fname"]    ${first}
+        Fill Text    css=input[name="customer_lname"]    ${last}
+    END
     Fill Text    css=input[name="address1"]          ${address}
     Fill Text    css=input[name="city"]              ${city}
     Run Keyword And Ignore Error    Select Options By    css=#stateId      label    ${state}

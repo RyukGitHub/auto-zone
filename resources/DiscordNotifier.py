@@ -18,7 +18,8 @@ class DiscordNotifier:
         self.SITE_MAP = {
             'nfbusty': 'nf',
             'momlover': 'ml',
-            'brattysis': 'bs'
+            'brattysis': 'bs',
+            'nubiles-porn': 'np'
         }
 
     def send_discord_notification(self, test_status, site_name, email, password, ac_no, rt_no):

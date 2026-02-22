@@ -10,3 +10,4 @@ browser/
 playwright-log.txt
 .env
 .vscode
+out.txt
