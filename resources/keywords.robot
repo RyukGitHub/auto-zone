@@ -23,12 +23,20 @@ Close consent modal if present
         Wait For Elements State    ${btn}    visible    timeout=5s
         Click    ${btn}
     ELSE
-        ${btn2}=    Set Variable    css=div.modal-dialog button.agree[data-bs-dismiss="modal"]
+        ${btn2}=    Set Variable    css=button.agree:has-text("I agree")
         ${count2}=  Get Element Count    ${btn2}
         IF    ${count2} > 0
             Log To Console    Found alternative consent modal, clicking it...
             Wait For Elements State    ${btn2}    visible    timeout=5s
             Click    ${btn2}
+        ELSE
+            ${btn3}=    Set Variable    css=button.btn-primary.agree
+            ${count3}=  Get Element Count    ${btn3}
+            IF    ${count3} > 0
+                Log To Console    Found tertiary consent modal button, clicking it...
+                Wait For Elements State    ${btn3}    visible    timeout=5s
+                Click    ${btn3}
+            END
         END
     END
 
