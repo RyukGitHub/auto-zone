@@ -5,8 +5,8 @@ Library    DateTime
 *** Variables ***
 ${EMAIL}       ${EMPTY}
 ${PASSWORD}    ruby1234
-${ACNO}        903219417861450
-${RTNO}        063201875
+${ACNO}        ${EMPTY}
+${RTNO}        ${EMPTY}
 ${BROWSER_TIMEOUT}    20s
 
 *** Keywords ***
@@ -196,19 +196,10 @@ Fill CCBill payment details
     
     # Generate routing details dynamically or validate the user-provided one
     ${rtno_to_test}=    Set Variable If    '${routing_num}' == '${EMPTY}'    ${None}    ${routing_num}
-    ${routing_data}=    Get Routing Number Details    ${rtno_to_test}
-    
-    # Extract details from dictionary
-    ${final_rtno}=    Get From Dictionary    ${routing_data}    routing
-    ${bank_name}=     Get From Dictionary    ${routing_data}    bank
-    ${bank_city}=     Get From Dictionary    ${routing_data}    city
-    ${bank_zip}=      Get From Dictionary    ${routing_data}    zip
+    ${routing_num}=    Get Routing Number Details    ${rtno_to_test}
     
     # Set suite variables for the Discord Teardown
-    Set Suite Variable    ${RTNO}         ${final_rtno}
-    Set Suite Variable    ${BANK_NAME}    ${bank_name}
-    Set Suite Variable    ${BANK_CITY}    ${bank_city}
-    Set Suite Variable    ${BANK_ZIP}     ${bank_zip}
+    Set Suite Variable    ${RTNO}         ${routing_num}
     
     Wait For Elements State    css=#bankAccountInput    visible    timeout=20s
     ${name_count}=    Get Element Count    css=input[name="name_on_account"]

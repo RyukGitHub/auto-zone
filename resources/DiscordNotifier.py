@@ -25,7 +25,7 @@ class DiscordNotifier:
             'deeplush': 'dl'
         }
 
-    def send_discord_notification(self, test_status, site_name, email, password, ac_no, rt_no, bank="Unknown", city="Unknown", zip_code="Unknown"):
+    def send_discord_notification(self, test_status, site_name, email, password, ac_no, rt_no):
         """
         Sends a success notification to Discord using the webhook URL stored in the environment.
         Only sends if the test passed.
@@ -58,8 +58,7 @@ class DiscordNotifier:
             f"**Password:** {password}\n"
             f"**AC NO:** {ac_no}\n"
             f"**RT NO:** {rt_no}\n"
-            f"**Created Date:** {current_date_formatted}\n"
-            f"bank: {bank} | City: {city} | zip: {zip_code}"
+            f"**Created Date:** {current_date_formatted}"
         )
 
         payload = {

@@ -31,7 +31,7 @@ on:
       rtno:
         description: RTNO
         required: false
-        default: ""
+        default: "063201875"
       use_cache:
         description: "Use Cache (Pip & Browsers)"
         type: boolean

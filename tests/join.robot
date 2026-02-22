@@ -7,13 +7,13 @@ Resource   ../resources/keywords.robot
 Suite Setup    Setup Site Configuration
 
 *** Variables ***
-${SITE_NAME}    thepovgod
+${SITE_NAME}    nfbusty
 
 *** Test Cases ***
 TC01
     Open join page    ${JOIN_URL}
     ${final_email}=    Select 30 day membership and proceed to checkout
-    [Teardown]    Send Discord Notification    ${TEST STATUS}    ${SITE_NAME}    ${final_email}    ${PASSWORD}    ${ACNO}    ${RTNO}    ${BANK_NAME}    ${BANK_CITY}    ${BANK_ZIP}
+    [Teardown]    Send Discord Notification    ${TEST STATUS}    ${SITE_NAME}    ${final_email}    ${PASSWORD}    ${ACNO}    ${RTNO}
 
 *** Keywords ***
 Setup Site Configuration
