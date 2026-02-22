@@ -19,12 +19,14 @@ Close consent modal if present
     ${btn}=    Set Variable    css=div.modal-dialog button[data-bs-dismiss="modal"]:has-text("I agree")
     ${count}=  Get Element Count    ${btn}
     IF    ${count} > 0
+        Log To Console    Found "I agree" modal, clicking it...
         Wait For Elements State    ${btn}    visible    timeout=5s
         Click    ${btn}
     ELSE
         ${btn2}=    Set Variable    css=div.modal-dialog button.agree[data-bs-dismiss="modal"]
         ${count2}=  Get Element Count    ${btn2}
         IF    ${count2} > 0
+            Log To Console    Found alternative consent modal, clicking it...
             Wait For Elements State    ${btn2}    visible    timeout=5s
             Click    ${btn2}
         END
@@ -36,6 +38,7 @@ Close content modal if present
 
 Open join page
     [Arguments]    ${url}=${JOIN_URL}
+    Log To Console    Opening join page URL: ${url}
     Set Browser Timeout    ${BROWSER_TIMEOUT}
     New Page    about:blank
     Go To    ${url}    timeout=20s
@@ -45,6 +48,7 @@ Select payment method ACH
     ${ach}=    Set Variable    css=a[data-ignore-join-block="true"][href*="cascid=${CASCID}"]:has-text("ACH")
     ${count}=    Get Element Count    ${ach}
     IF    ${count} > 0
+        Log To Console    Found ACH payment option, clicking it...
         Click    ${ach}
         Wait Until Keyword Succeeds    20s    1s    Current URL should contain    cascid=${CASCID}
     ELSE
@@ -66,18 +70,22 @@ Select 30 day membership option
             Capture screenshot    membership-not-visible
             Fail    ${msg2}
         END
+        Log To Console    Found fallback 30 Day Membership option, clicking it...
         Click    ${option_alt}
     ELSE
+        Log To Console    Found 30 Day Membership option, clicking it...
         Click    ${option}
     END
     ${submit_btn}=    Set Variable    css=button.submit-btn:has-text("Get Access Now")
     ${submit_count}=    Get Element Count    ${submit_btn}
     IF    ${submit_count} > 0
+        Log To Console    Found Get Access Now button, clicking it...
         Run Keyword And Ignore Error    Click    ${submit_btn}    timeout=2s
     ELSE
         ${submit_btn2}=    Set Variable    css=button.submit-btn[type="submit"]
         ${submit_count2}=    Get Element Count    ${submit_btn2}
         IF    ${submit_count2} > 0
+            Log To Console    Found alternative submit button, clicking it...
             Run Keyword And Ignore Error    Click    ${submit_btn2}    timeout=2s
         END
     END

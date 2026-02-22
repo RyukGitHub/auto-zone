@@ -31,7 +31,7 @@ on:
 
 jobs:
   run-checkout-tests:
-    name: Run Robot Framework Tests
+    name: test runs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -49,7 +49,7 @@ jobs:
         run: |
           python -m Browser.entry init
 
-      - name: Execute Membership TC
+      - name: Execute TC
         env:
           DISCORD_WEBHOOK_URL: ${{ secrets.ACH_DISCORD_WEBHOOK_URL }}
         run: |
