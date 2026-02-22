@@ -29,6 +29,11 @@ on:
         description: RTNO
         required: false
         default: "063201875"
+      use_cache:
+        description: "Use Cache (Pip & Browsers)"
+        type: boolean
+        required: true
+        default: true
 
 jobs:
   run-checkout-tests:
@@ -40,13 +45,23 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: ${{ github.event.inputs.use_cache == 'true' && 'pip' || '' }}
 
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Cache Playwright Browser Binaries
+        if: github.event.inputs.use_cache == 'true'
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ hashFiles('requirements.txt') }}
+
       - name: Initialize Playwright Browser Binaries
+        if: steps.playwright-cache.outputs.cache-hit != 'true' || github.event.inputs.use_cache != 'true'
         run: |
           python -m Browser.entry init
 
