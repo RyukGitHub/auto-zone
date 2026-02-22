@@ -19,7 +19,8 @@ class DiscordNotifier:
             'nfbusty': 'nf',
             'momlover': 'ml',
             'brattysis': 'bs',
-            'nubiles-porn': 'np'
+            'nubiles-porn': 'np',
+            'anilos': 'an'
         }
 
     def send_discord_notification(self, test_status, site_name, email, password, ac_no, rt_no):

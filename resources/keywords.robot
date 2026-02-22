@@ -88,13 +88,15 @@ Select 30 day membership option
     ${submit_count}=    Get Element Count    ${submit_btn}
     IF    ${submit_count} > 0
         Log To Console    Found Get Access Now button, clicking it...
-        Run Keyword And Ignore Error    Click    ${submit_btn}    timeout=2s
+        Run Keyword And Ignore Error    Wait For Elements State    ${submit_btn}    visible    timeout=2s
+        Run Keyword And Ignore Error    Click    ${submit_btn}
     ELSE
         ${submit_btn2}=    Set Variable    css=button.submit-btn[type="submit"]
         ${submit_count2}=    Get Element Count    ${submit_btn2}
         IF    ${submit_count2} > 0
             Log To Console    Found alternative submit button, clicking it...
-            Run Keyword And Ignore Error    Click    ${submit_btn2}    timeout=2s
+            Run Keyword And Ignore Error    Wait For Elements State    ${submit_btn2}    visible    timeout=2s
+            Run Keyword And Ignore Error    Click    ${submit_btn2}
         END
     END
     Capture screenshot    after-select-membership
@@ -178,9 +180,14 @@ Fill CCBill payment details
 
 Click submit order
     [Documentation]    Click CCBill "Submit Order" button.
-    Wait For Elements State    css=input.submitField    visible    timeout=20s
+    ${submit_btn}=    Set Variable    css=input[name="submit"]
+    ${count}=    Get Element Count    ${submit_btn}
+    IF    ${count} == 0
+        ${submit_btn}=    Set Variable    css=input.submitField
+    END
+    Wait For Elements State    ${submit_btn}    visible    timeout=20s
     Capture screenshot    before-submit-order
-    Click    css=input.submitField
+    Click    ${submit_btn}
     Log To Console    Clicked: Submit Order
     Verify email notification page
 
