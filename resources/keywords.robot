@@ -114,7 +114,6 @@ Close modal and select 30 day membership
 Enter email and password and proceed to checkout
     [Documentation]    If the username prompt modal appears, fill email/password, click Proceed to Checkout, and log the email.
     [Arguments]    ${password}=${PASSWORD}    ${email}=${EMAIL}    ${acno}=${ACNO}    ${rtno}=${RTNO}
-    Log To Console    Filling basic information in checkout step...
     ${emailCount}=    Get Element Count    css=#UsernamePromptEmail
     IF    ${emailCount} > 0
         Wait For Elements State    css=#UsernamePromptEmail    visible    timeout=15s
@@ -132,6 +131,7 @@ Enter email and password and proceed to checkout
         Run Keyword And Ignore Error    Switch Page    NEW
         Capture screenshot    after-click-checkout
         Verify redirected to CCBill signup
+        Log To Console    Filling basic information in checkout step...
         Fill CCBill personal details
         Fill CCBill payment details    account_num=${acno}    routing_num=${rtno}
         Click submit order
@@ -139,6 +139,7 @@ Enter email and password and proceed to checkout
     ELSE
         Log To Console    Username prompt did not appear. Attempting CCBill checkout directly.
         Verify redirected to CCBill signup
+        Log To Console    Filling basic information in checkout step...
         Fill CCBill personal details
         Fill CCBill payment details    account_num=${acno}    routing_num=${rtno}
         Click submit order
