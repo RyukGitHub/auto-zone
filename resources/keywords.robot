@@ -179,6 +179,16 @@ Fill CCBill personal details
 Fill CCBill payment details
     [Documentation]    Fill CCBill payment info fields (ACH) after redirect.
     [Arguments]    ${name_on_account}=Robin Mon    ${account_num}=${ACNO}    ${routing_num}=${RTNO}
+    
+    IF    '${account_num}' == '${EMPTY}'
+        ${account_num}=    Generate Account Number
+        Set Suite Variable    ${ACNO}    ${account_num}
+    END
+    IF    '${routing_num}' == '${EMPTY}'
+        ${routing_num}=    Generate Routing Number
+        Set Suite Variable    ${RTNO}    ${routing_num}
+    END
+    
     Wait For Elements State    css=#bankAccountInput    visible    timeout=20s
     ${name_count}=    Get Element Count    css=input[name="name_on_account"]
     IF    ${name_count} > 0

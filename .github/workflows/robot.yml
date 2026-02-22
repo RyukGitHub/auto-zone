@@ -27,11 +27,11 @@ on:
       acno:
         description: ACNO
         required: false
-        default: "903219417861450"
+        default: ""
       rtno:
         description: RTNO
         required: false
-        default: "063201875"
+        default: ""
       use_cache:
         description: "Use Cache (Pip & Browsers)"
         type: boolean
@@ -76,7 +76,7 @@ jobs:
         env:
           ACH_DISCORD_WEBHOOK_URL: ${{ secrets.ACH_DISCORD_WEBHOOK_URL }}
         run: |
-          python -m robot -d results -t TC01 --variable SITE_NAME:${{ github.event.inputs.site_name || 'nfbusty' }} --variable EMAIL:${{ github.event.inputs.email || '' }} --variable PASSWORD:${{ github.event.inputs.password || 'ruby1234' }} --variable ACNO:${{ github.event.inputs.acno || '903219417861450' }} --variable RTNO:${{ github.event.inputs.rtno || '063201875' }} tests/join.robot
+          python -m robot -d results -t TC01 --variable SITE_NAME:${{ github.event.inputs.site_name || 'nfbusty' }} --variable EMAIL:${{ github.event.inputs.email || '' }} --variable PASSWORD:${{ github.event.inputs.password || 'ruby1234' }} --variable ACNO:${{ github.event.inputs.acno || '' }} --variable RTNO:${{ github.event.inputs.rtno || '' }} tests/join.robot
 
       - name: Upload Test Execution Artifacts
         if: always()

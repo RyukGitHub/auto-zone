@@ -1,11 +1,12 @@
 *** Settings ***
 Library    Browser
 Library    ${EXECDIR}/resources/DiscordNotifier.py
+Library    ${EXECDIR}/resources/Generator.py
 Resource   ../resources/keywords.robot
 Suite Setup    Setup Site Configuration
 
 *** Variables ***
-${SITE_NAME}    nfbusty
+${SITE_NAME}    thepovgod
 
 *** Test Cases ***
 TC01
