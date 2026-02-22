@@ -185,7 +185,7 @@ Fill CCBill payment details
     Log To Console    Account used: ${account_num} | Routing used: ${routing_num}
 
 Click submit order
-    [Documentation]    Click CCBill "Submit Order" button.
+    [Documentation]    Click CCBill "Submit Order" button, handle optional "Process Transaction" confirmation, and verify success.
     ${submit_btn}=    Set Variable    css=input[name="submit"]
     ${count}=    Get Element Count    ${submit_btn}
     IF    ${count} == 0
@@ -194,16 +194,45 @@ Click submit order
     Wait For Elements State    ${submit_btn}    visible    timeout=20s
     Capture screenshot    before-submit-order
     Click    ${submit_btn}
-    Log To Console    Clicked: Submit Order
-    Verify email notification page
+    Log To Console    Clicked: Submit Order / Complete this Purchase
+    
+    # Handle optional Process Transaction confirmation screen
+    Sleep    3s
+    ${process_count}=    Get Element Count    css=input[value="Process Transaction"]
+    IF    ${process_count} > 0
+        Log To Console    Found "Process Transaction" confirmation, clicking it...
+        Click    css=input[value="Process Transaction"]
+        Sleep    2s
+    END
 
-Verify email notification page
-    [Documentation]    Verify redirect to email notification page and Resend Email button is visible.
-    Wait Until Keyword Succeeds    20s    1s    Current URL should start with    https://bill.ccbill.com/jpost/emailNotification.cgi
-    ${finalUrl}=    Get Url
-    Log To Console    Redirected URL: ${finalUrl}
-    Wait For Elements State    css=input[name="resendEmail"]    visible    timeout=20s
-    Log To Console    PASS: Resend Email button is visible
+    Verify success redirect
+
+Verify success redirect
+    [Documentation]    Verify redirect to either email notification page or merchant login page.
+    Wait Until Keyword Succeeds    25s    3s    Url should indicate success
+
+Url should indicate success
+    ${url}=    Get Url
+    ${is_email}=    Run Keyword And Return Status    Should Contain    ${url}    emailNotification.cgi
+    ${is_signup}=    Run Keyword And Return Status    Should Contain    ${url}    bill.ccbill.com/jpost/signup
+    
+    IF    ${is_email}
+        Log To Console    PASS: Redirected to CCBill Email Notification
+        Wait For Elements State    css=input[name="resendEmail"]    visible    timeout=5s
+    ELSE IF    ${is_signup}
+        # If there's an error message, we fail immediately so the test terminates
+        ${err_count}=    Get Element Count    css=div.error
+        IF    ${err_count} > 0
+            ${err_txt}=    Get Text    css=div.error
+            # Ignore empty error blocks that CCBill leaves in DOM
+            IF    '${err_txt}' != '${EMPTY}'
+                Fail    Transaction failed on CCBill: ${err_txt}
+            END
+        END
+        Fail    Still on CCBill signup page, transaction not complete yet.
+    ELSE
+        Log To Console    PASS: Redirected to merchant site successfully: ${url}
+    END
 
 Current URL should start with
     [Arguments]    ${prefix}

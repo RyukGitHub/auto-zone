@@ -20,7 +20,8 @@ class DiscordNotifier:
             'momlover': 'ml',
             'brattysis': 'bs',
             'nubiles-porn': 'np',
-            'anilos': 'an'
+            'anilos': 'an',
+            'thepovgod': 'tpg'
         }
 
     def send_discord_notification(self, test_status, site_name, email, password, ac_no, rt_no):
