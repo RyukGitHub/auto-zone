@@ -112,12 +112,14 @@ Enter email and password and proceed to checkout
         Fill CCBill personal details
         Fill CCBill payment details    account_num=${acno}    routing_num=${rtno}
         Click submit order
+        RETURN    ${email}
     ELSE
         Log To Console    Username prompt did not appear. Attempting CCBill checkout directly.
         Verify redirected to CCBill signup
         Fill CCBill personal details
         Fill CCBill payment details    account_num=${acno}    routing_num=${rtno}
         Click submit order
+        RETURN    ${email}
     END
 
 Verify redirected to CCBill signup
@@ -185,4 +187,5 @@ Select 30 day membership and proceed to checkout
     [Documentation]    Close consent modal, select 30 day membership, fill email/password if prompted, proceed to checkout.
     [Arguments]    ${password}=${PASSWORD}    ${email}=${EMAIL}    ${acno}=${ACNO}    ${rtno}=${RTNO}
     Close modal and select 30 day membership
-    Enter email and password and proceed to checkout    ${password}    ${email}    ${acno}    ${rtno}
+    ${final_email}=    Enter email and password and proceed to checkout    ${password}    ${email}    ${acno}    ${rtno}
+    RETURN    ${final_email}

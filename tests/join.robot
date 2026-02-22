@@ -1,15 +1,17 @@
 *** Settings ***
 Library    Browser
+Library    ${EXECDIR}/resources/DiscordNotifier.py
 Resource   ../resources/keywords.robot
 Suite Setup    Setup Site Configuration
 
 *** Variables ***
-${SITE_NAME}    brattysis
+${SITE_NAME}    nfbusty
 
 *** Test Cases ***
 TC01
     Open join page    ${JOIN_URL}
-    Select 30 day membership and proceed to checkout
+    ${final_email}=    Select 30 day membership and proceed to checkout
+    [Teardown]    Send Discord Notification    ${TEST STATUS}    ${SITE_NAME}    ${final_email}    ${PASSWORD}    ${ACNO}    ${RTNO}
 
 *** Keywords ***
 Setup Site Configuration

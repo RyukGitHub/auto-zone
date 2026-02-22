@@ -8,3 +8,5 @@ report.html
 results/
 browser/
 playwright-log.txt
+.env
+.vscode

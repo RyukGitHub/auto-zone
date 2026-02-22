@@ -41,6 +41,15 @@ python -m pip install -r requirements.txt
 python -m Browser.entry init
 ```
 
+## Discord Notifications
+
+A custom Python script evaluates tests on completion and sends an alert to a Discord channel if the test passed. 
+To enable this locally, create a `.env` file at the root of the project with the following variable:
+```env
+ACH_DISCORD_WEBHOOK_URL=https://discord.com/api/webhooks/...
+```
+*Note: The `.env` file is ignored by Git to prevent leaking webhooks. For GitHub Actions, add `ACH_DISCORD_WEBHOOK_URL` as a Repository Secret.*
+
 ## Running Tests
 
 To run the test suite, ensure your **virtual environment is active**, and use the `python -m` module executor to avoid any PATH issues:
