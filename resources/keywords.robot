@@ -54,6 +54,15 @@ Open join page
     Set Browser Timeout    ${BROWSER_TIMEOUT}
     New Page    about:blank
     Go To    ${url}    timeout=20s
+    Sleep    1s
+    ${current_url}=    Get Url
+    ${is_sfw}=    Run Keyword And Return Status    Should Contain    ${current_url}    /sfw
+    IF    ${is_sfw}
+        Log To Console    SFW Redirect detected. Reloading join page: ${url}
+        Go To    ${url}    timeout=20s
+        Sleep    1s
+        Close consent modal if present
+    END
 
 Select payment method ACH
     [Documentation]    Select ACH payment option (cascid=${CASCID}) if available.
