@@ -10,7 +10,9 @@ This repository contains an automated testing suite built with Robot Framework a
 - `tests/`: Contains the test cases (e.g., `join.robot`). 
 - `resources/`: Contains the core setup for the automation framework.
   - `keywords.robot`: Reusable keywords for navigating the site, interacting with modals, and filling out forms.
-  - `sites/`: Site-specific configurations and variables (e.g., `nfbusty.robot`, `momlover.robot`, `anilos.robot`).
+  - `Generator.py`: Python module providing mathematically valid routing/account numbers and dynamic test data.
+  - `DiscordNotifier.py`: Python handler mapping site tags and dispatching webhook notifications on completion.
+  - `sites/`: Site-specific configurations and variables (e.g., `nfbusty.robot`, `momlover.robot`, `thepovgod.robot`, `deeplush.robot`).
 - `.github/workflows/`: GitHub Actions workflows for running tests automatically.
 
 ## Requirements
@@ -56,6 +58,12 @@ To run the test suite, ensure your **virtual environment is active**, and use th
 
 ```bash
 python -m robot -d results tests/
+```
+
+**Dynamic Credentials:**
+By default, the framework mathematically generates a valid routing number (`RTNO`) and account number (`ACNO`) prefixed string upon each run. You can optionally override this by passing specific variables via command line or the GitHub Actions dispatch form:
+```bash
+python -m robot -d results -t TC01 --variable ACNO:98765432 --variable RTNO:063201875 tests/join.robot
 ```
 
 Results (including `log.html`, `report.html`, and `output.xml`) will be automatically stored in the `results/` directory, which is excluded from version control.
