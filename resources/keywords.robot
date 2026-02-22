@@ -155,7 +155,7 @@ Verify redirected to CCBill signup
 
 Fill CCBill personal details
     [Documentation]    Fill CCBill signup personal info after redirect.
-    [Arguments]    ${first}=Robin    ${last}=Mon    ${address}=55 E 10th St    ${city}=New York    ${state}=New York    ${country}=United States    ${zip}=10003
+    [Arguments]    ${first}=Robin    ${last}=Mon    ${address}=55 E 10th St    ${city}=New York    ${state}=New York    ${country}=United States    ${zip}=10003    ${phone}=7797797791
     Wait For Elements State    css=input[name="address1"]    visible    timeout=20s
     ${fname_count}=    Get Element Count    css=input[name="customer_fname"]
     IF    ${fname_count} > 0
@@ -169,6 +169,12 @@ Fill CCBill personal details
     Run Keyword And Ignore Error    Select Options By    css=#countryId    label    ${country}
     Run Keyword And Ignore Error    Select Options By    css=#countryId    value    US
     Fill Text    css=input[name="zipcode"]           ${zip}
+    
+    # Fill optional phone number if present
+    ${phone_count}=    Get Element Count    css=input[name="phone_number"]
+    IF    ${phone_count} > 0
+        Fill Text    css=input[name="phone_number"]    ${phone}
+    END
 
 Fill CCBill payment details
     [Documentation]    Fill CCBill payment info fields (ACH) after redirect.

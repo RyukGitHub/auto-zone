@@ -21,7 +21,8 @@ class DiscordNotifier:
             'brattysis': 'bs',
             'nubiles-porn': 'np',
             'anilos': 'an',
-            'thepovgod': 'tpg'
+            'thepovgod': 'tpg',
+            'deeplush': 'dl'
         }
 
     def send_discord_notification(self, test_status, site_name, email, password, ac_no, rt_no):
