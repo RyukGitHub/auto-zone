@@ -10,7 +10,7 @@ This repository contains an automated testing suite built with Robot Framework a
 - `tests/`: Contains the test cases (e.g., `join.robot`). 
 - `resources/`: Contains the core setup for the automation framework.
   - `keywords.robot`: Reusable keywords for navigating the site, interacting with modals, and filling out forms.
-  - `sites/`: Site-specific configurations and variables (e.g., `nfbusty.robot`, `momlover.robot`).
+  - `sites/`: Site-specific configurations and variables (e.g., `nfbusty.robot`, `momlover.robot`, `anilos.robot`).
 - `.github/workflows/`: GitHub Actions workflows for running tests automatically.
 
 ## Requirements

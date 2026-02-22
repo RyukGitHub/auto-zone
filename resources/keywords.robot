@@ -114,6 +114,7 @@ Close modal and select 30 day membership
 Enter email and password and proceed to checkout
     [Documentation]    If the username prompt modal appears, fill email/password, click Proceed to Checkout, and log the email.
     [Arguments]    ${password}=${PASSWORD}    ${email}=${EMAIL}    ${acno}=${ACNO}    ${rtno}=${RTNO}
+    Log To Console    Filling basic information in checkout step...
     ${emailCount}=    Get Element Count    css=#UsernamePromptEmail
     IF    ${emailCount} > 0
         Wait For Elements State    css=#UsernamePromptEmail    visible    timeout=15s

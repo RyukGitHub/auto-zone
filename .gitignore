@@ -11,3 +11,7 @@ playwright-log.txt
 .env
 .vscode
 out.txt
+err.txt
+error_full.txt
+.DS_Store
+*.log

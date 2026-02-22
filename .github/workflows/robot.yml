@@ -68,7 +68,6 @@ jobs:
       - name: Initialize Playwright Browser Binaries
         if: steps.playwright-cache.outputs.cache-hit != 'true' || github.event.inputs.use_cache != 'true'
         run: |
-          sudo npx playwright install-deps || true
           python -m Browser.entry init
 
       - name: Execute TC
