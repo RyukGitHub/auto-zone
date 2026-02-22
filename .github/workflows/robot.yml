@@ -52,12 +52,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Get Playwright Browser Path
+        id: playwright-path
+        run: echo "path=$(python -c 'import Browser; print(Browser.__path__[0] + \"/wrapper\")')" >> $GITHUB_OUTPUT
+
       - name: Cache Playwright Browser Binaries
         if: github.event.inputs.use_cache == 'true'
         uses: actions/cache@v4
         id: playwright-cache
         with:
-          path: ~/.cache/ms-playwright
+          path: ${{ steps.playwright-path.outputs.path }}
           key: ${{ runner.os }}-playwright-${{ hashFiles('requirements.txt') }}
 
       - name: Initialize Playwright Browser Binaries
