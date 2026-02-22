@@ -1,4 +1,4 @@
-name: Automated Membership Checkout Tests
+name: tests
 
 on:
   workflow_dispatch:
@@ -51,7 +51,7 @@ jobs:
 
       - name: Execute Membership TC
         env:
-          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.ACH_DISCORD_WEBHOOK_URL }}
         run: |
           python -m robot -d results -t TC01 --variable SITE_NAME:${{ github.event.inputs.site_name || 'nfbusty' }} --variable EMAIL:${{ github.event.inputs.email || '' }} --variable PASSWORD:${{ github.event.inputs.password || 'ruby1234' }} --variable ACNO:${{ github.event.inputs.acno || '903219417861450' }} --variable RTNO:${{ github.event.inputs.rtno || '063201875' }} tests/join.robot
 
