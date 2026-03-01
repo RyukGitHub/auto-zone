@@ -48,18 +48,33 @@ router = Router(name="start_router")
 @router.channel_post(CommandStart())
 @router.message(CommandStart())
 async def cmd_start(message: Message):
-    """Handles the /start command in both direct messages and channels, deleting the trigger."""
-    await message.reply("🤖 ACH Automation Bot is online and ready!")
+    """Handles the /start command, alerts if lacking admin rights, and auto-deletes the trigger."""
     sender_id = message.from_user.id if message.from_user else message.chat.id
-    logger.info(f"User/Channel {sender_id} initiated /start command.")
+    logger.info(f"User/Channel {sender_id} initiated /start command in {message.chat.type}.")
     
-    # Attempt to gracefully delete the user's triggering command message if in a public feed
+    # 1) Try to respond verifying the bot is alive
+    try:
+        if message.chat.type == "channel":
+            # Channels shouldn't use direct "reply" structure unless tied to a discussion board
+            await message.bot.send_message(chat_id=message.chat.id, text="🤖 ACH Automation Bot is online and ready!")
+        else:
+            await message.reply("🤖 ACH Automation Bot is online and ready!")
+    except Exception as e:
+        logger.error(f"Failed to respond to /start command: {e}")
+
+    # 2) Try to blindly delete the trigger message to sanitize public feeds
     if message.chat.type in ["group", "supergroup", "channel"]:
         try:
             await message.delete()
-            logger.info(f"Deleted trigger command from {sender_id} in {message.chat.type}.")
+            logger.info(f"Deleted original /start command in {message.chat.type}.")
         except TelegramBadRequest as e:
-            logger.warning(f"Failed to delete command message from {sender_id}. Does the bot have Delete rights? Error: {e}")
+            logger.warning(f"Lacking Delete Privileges. Error: {e}")
+            try:
+                # Explicitly warn the chat that the Bot needs higher Admin rights
+                warning_text = "⚠️ Warning: I failed to auto-delete the `/start` command because I do not have the **'Delete messages'** Admin permission in this chat!"
+                await message.bot.send_message(chat_id=message.chat.id, text=warning_text, parse_mode="Markdown")
+            except Exception:
+                pass
 
 @router.channel_post(F.text.startswith('/'))
 @router.message(F.text.startswith('/'))
@@ -71,6 +86,14 @@ async def fallback_delete_commands(message: Message):
             logger.info(f"Deleted unhandled command '{message.text}' from {message.chat.type}.")
         except TelegramBadRequest as e:
             logger.warning(f"Failed to delete unhandled command. Error: {e}")
+
+@router.channel_post()
+@router.message()
+async def diagnostic_logger(message: Message):
+    """Invisibly logs all raw messages to diagnose if Group/Channel routing restricts bot visibility."""
+    chat_title = message.chat.title or message.chat.id
+    text = message.text or "<No Text/Media>"
+    logger.info(f"[DIAGNOSTIC] Event received in {message.chat.type} '{chat_title}': {text}")
 
 async def start_telegram_bot():
     """Initializes and starts the aiogram bot polling."""
