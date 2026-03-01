@@ -66,7 +66,8 @@ async def start_telegram_bot():
     # Drop any pending updates from while we were offline, then start polling
     await bot.delete_webhook(drop_pending_updates=True)
     logger.info("Starting Telegram Bot Polling (Aiogram event loop active)...")
-    await dp.start_polling(bot)
+    # Disable signal handling since this runs in a background thread
+    await dp.start_polling(bot, handle_signals=False)
 
 def run_bot_thread():
     """Runs the asyncio event loop natively without colliding with Flask."""
