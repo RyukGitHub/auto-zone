@@ -81,7 +81,11 @@ When deploying on Render, use the following configurations:
 * **Environment Variables**: Make sure to add `TELEGRAM_TOKEN` and `TELEGRAM_CHAT_ID` so production alerts work.
 
 ### Keeping the Bot Alive (Free Tier)
-If you deploy on the Free Tier, Render spins down the service after 15 minutes of inactivity. To prevent this, go to a free service like [cron-job.org](https://cron-job.org) or [UptimeRobot](https://uptimerobot.com) and set up a ping every 10 minutes to:
-`https://your-render-app-url.onrender.com/ping`
+As part of this repo, a `.github/workflows/keep_alive.yml` file is included. It is configured to run automatically every **10 minutes** via GitHub Actions to hit exactly your Render URL and prevent it from falling asleep.
+
+For this Action to work, you must add your Render URL to your repository secrets:
+1. Go to your repository settings on GitHub.
+2. Navigate to **Secrets and variables > Actions**.
+3. Create a **New repository secret** named `RENDER_APP_URL` and paste your Render address (e.g., `https://your-app.onrender.com`).
 
 *(Note: The `app.py` server also has an optional `/run-tests` endpoint which you can hit via HTTP to remotely trigger tests without SSH!)*

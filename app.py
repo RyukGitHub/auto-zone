@@ -11,7 +11,7 @@ def home():
 
 @app.route('/ping')
 def ping():
-    """Endpoint for cron-job.org or UptimeRobot to hit every 10 minutes to keep Render awake."""
+    """Endpoint to hit to keep Render awake."""
     return jsonify({"status": "alive", "message": "Hi!"})
 
 @app.route('/run-tests')
