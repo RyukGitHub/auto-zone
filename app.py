@@ -70,13 +70,16 @@ def run_bot_thread():
     """Runs the asyncio event loop for the Telegram bot in a separate background thread."""
     loop = asyncio.new_event_loop()
     asyncio.set_event_loop(loop)
-    loop.run_until_complete(start_telegram_bot())
+    try:
+        loop.run_until_complete(start_telegram_bot())
+    except Exception as e:
+        logger.error(f"Telegram Bot Polling Error: {e}")
+
+# IMPORTANT: Initialize the thread globally so Gunicorn triggers it when it imports `app.py`.
+bot_thread = threading.Thread(target=run_bot_thread, daemon=True)
+bot_thread.start()
 
 if __name__ == '__main__':
-    # 1. Start the Aiogram bot in a background thread so it doesn't block Flask
-    bot_thread = threading.Thread(target=run_bot_thread, daemon=True)
-    bot_thread.start()
-
-    # 2. Start the Flask server on the main thread to bind the PORT for Render
+    # Local fallback for `python app.py`
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port, use_reloader=False)
