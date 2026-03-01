@@ -87,11 +87,7 @@ To prove the bot is actively running on Render:
 2. Open your telegram chat (or channel) and type `/start`. The bot will instantly reply with: `"🤖 ACH Automation Bot is online and ready!"`
 
 ### Keeping the Bot Alive (Free Tier)
-As part of this repo, a `.github/workflows/keep_alive.yml` file is included. It is configured to run automatically every **10 minutes** via GitHub Actions to hit exactly your Render URL and prevent it from falling asleep.
-
-For this Action to work, you must add your Render URL to your repository secrets:
-1. Go to your repository settings on GitHub.
-2. Navigate to **Secrets and variables > Actions**.
-3. Create a **New repository secret** named `RENDER_APP_URL` and paste your Render address (e.g., `https://your-app.onrender.com`).
+If you deploy on the Free Tier, Render spins down the service after 15 minutes of inactivity. To prevent this, go to a free service like [cron-job.org](https://cron-job.org) and set it to ping exactly this URL every 10 minutes:
+`https://your-app-name.onrender.com/ping`
 
 *(Note: The `app.py` server also has an optional `/run-tests` endpoint which you can hit via HTTP to remotely trigger tests without SSH!)*
