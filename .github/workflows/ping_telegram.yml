@@ -12,11 +12,20 @@ jobs:
   ping-telegram:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Requests
+        run: pip install requests
+
       - name: Send Test Ping to Telegram
-        run: |
-          curl --fail-with-body -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
-          -H "Content-Type: application/json" \
-          -d '{"chat_id": "${TELEGRAM_CHAT_ID}", "text": "${{ github.event.inputs.test_message }}"}'
+        run: python .github/scripts/ping_telegram.py
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TEST_MESSAGE: ${{ github.event.inputs.test_message }}
