@@ -3,10 +3,10 @@ Library    Browser
 Library    DateTime
 
 *** Variables ***
-${EMAIL}       ${EMPTY}
+${EMAIL}    ${EMPTY}
 ${PASSWORD}    ruby1234
-${ACNO}        ${EMPTY}
-${RTNO}        ${EMPTY}
+${ACNO}    ${EMPTY}
+${RTNO}    ${EMPTY}
 ${BROWSER_TIMEOUT}    20s
 
 *** Keywords ***
@@ -131,7 +131,7 @@ Enter email and password and proceed to checkout
             ${epoch}=    Get Time    epoch
             ${email}=    Set Variable    test${epoch}@yopmail.com
         END
-        Fill Text    css=#UsernamePromptEmail       ${email}
+        Fill Text    css=#UsernamePromptEmail    ${email}
         Fill Text    css=#UsernamePromptPassword    ${password}
         Log To Console    Email used: ${email} | Password: ${password}
         Wait For Elements State    css=button#Checkout    visible    timeout=15s

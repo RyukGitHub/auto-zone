@@ -1,8 +1,8 @@
 *** Settings ***
 Library    Browser
 Library    Collections
-Library    ${EXECDIR}/resources/TelegramNotifier.py
-Library    ${EXECDIR}/resources/Generator.py
+Library    ${EXECDIR}/libraries/TelegramNotifier.py
+Library    ${EXECDIR}/libraries/Generator.py
 Resource   ../resources/keywords.robot
 Suite Setup    Setup Site Configuration
 

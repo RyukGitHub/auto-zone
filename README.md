@@ -7,11 +7,12 @@ This repository contains an automated testing suite built with Robot Framework a
 
 ## Project Structure
 
-- `tests/`: Contains the test cases (e.g., `join.robot`). 
-- `resources/`: Contains the core setup for the automation framework.
-  - `keywords.robot`: Reusable keywords for navigating the site, interacting with modals, and filling out forms.
+- `tests/`: Contains the test cases (e.g., `join.robot`).
+- `libraries/`: Contains custom Python libraries for the framework.
   - `Generator.py`: Python module providing mathematically valid routing/account numbers and dynamic test data.
   - `TelegramNotifier.py`: Python handler mapping site tags and dispatching bot notifications on completion.
+- `resources/`: Contains the core setup for the automation framework.
+  - `keywords.robot`: Reusable keywords for navigating the site, interacting with modals, and filling out forms.
   - `sites/`: Site-specific configurations and variables (e.g., `nfbusty.robot`, `momlover.robot`, `thepovgod.robot`, `deeplush.robot`).
 - `.github/workflows/`: GitHub Actions workflows for running tests automatically.
 
@@ -81,10 +82,9 @@ When deploying on Render, use the following configurations:
 * **Environment Variables**: Make sure to add `TELEGRAM_TOKEN` and `TELEGRAM_CHAT_ID` so production alerts work.
 
 ### Verifying Bot is Alive (Telegram /start Command)
-To make your Telegram bot reply to `/start` commands and prove it's actively running on Render:
+To prove the bot is actively running on Render:
 1. Wait for your Render service to finish deploying.
-2. Visit `https://your-app-name.onrender.com/set-webhook` in your browser.
-3. It will automatically register your Render app with Telegram's API. From then on, whenever you type `/start` in your bot's chat, it will reply "🤖 ACH Automation Bot is online and ready!"
+2. Open your telegram chat (or channel) and type `/start`. The bot will instantly reply with: `"🤖 ACH Automation Bot is online and ready!"`
 
 ### Keeping the Bot Alive (Free Tier)
 As part of this repo, a `.github/workflows/keep_alive.yml` file is included. It is configured to run automatically every **10 minutes** via GitHub Actions to hit exactly your Render URL and prevent it from falling asleep.

@@ -1,8 +1,18 @@
-from flask import Flask, jsonify, request
+"""
+Main web service entry point for Render deployment and Telegram integration.
+Provides a background keep-alive ping endpoint and an asynchronous Aiogram long-polling loop.
+"""
+
+import asyncio
+import logging
 import os
 import subprocess
 import threading
-import requests
+
+from aiogram import Bot, Dispatcher, Router
+from aiogram.filters import CommandStart
+from aiogram.types import Message
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -26,56 +36,47 @@ def run_tests():
     thread.start()
     return jsonify({"status": "started", "message": "Test execution has begun in the background."})
 
-@app.route('/telegram-webhook', methods=['POST'])
-def telegram_webhook():
-    """Endpoint to receive updates from Telegram."""
-    data = request.json
-    if not data:
-        return "OK", 200
-        
-    if "message" in data and "text" in data["message"]:
-        text = data["message"]["text"]
-        chat_id = data["message"]["chat"]["id"]
-        
-        if text.startswith("/start"):
-            telegram_token = os.environ.get('TELEGRAM_TOKEN')
-            if telegram_token:
-                url = f"https://api.telegram.org/bot{telegram_token}/sendMessage"
-                payload = {
-                    "chat_id": chat_id,
-                    "text": "🤖 ACH Automation Bot is online and ready! Render is running fine."
-                }
-                try:
-                    requests.post(url, json=payload, timeout=5)
-                except Exception as e:
-                    print(f"Error sending message: {e}")
-                
-    return "OK", 200
+# ==========================================
+# Telegram Aiogram Bot Setup
+# ==========================================
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-@app.route('/set-webhook')
-def set_webhook():
-    """Helper endpoint to register the webhook with Telegram."""
+router = Router(name="start_router")
+
+@router.message(CommandStart())
+async def cmd_start(message: Message):
+    """Handles the /start command."""
+    await message.reply("🤖 ACH Automation Bot is online and ready!")
+    logger.info(f"User {message.from_user.id} initiated /start command.")
+
+async def start_telegram_bot():
+    """Initializes and starts the aiogram bot polling."""
     telegram_token = os.environ.get('TELEGRAM_TOKEN')
+    if not telegram_token:
+        logger.warning("TELEGRAM_TOKEN is not set. The bot will not start.")
+        return
+
+    bot = Bot(token=telegram_token)
+    dp = Dispatcher()
+    dp.include_router(router)
     
-    # Render provides RENDER_EXTERNAL_URL in the environment automatically!
-    render_url = os.environ.get('RENDER_EXTERNAL_URL')
-    
-    if not telegram_token or not render_url:
-        return jsonify({
-            "status": "error", 
-            "message": "Missing TELEGRAM_TOKEN or RENDER_EXTERNAL_URL environment variable."
-        }), 400
-        
-    webhook_url = f"{render_url}/telegram-webhook"
-    url = f"https://api.telegram.org/bot{telegram_token}/setWebhook?url={webhook_url}"
-    
-    try:
-        response = requests.get(url, timeout=10)
-        return jsonify(response.json())
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)}), 500
+    # Drop any pending updates from while we were offline, then start polling
+    await bot.delete_webhook(drop_pending_updates=True)
+    logger.info("Starting Telegram Bot Polling...")
+    await dp.start_polling(bot)
+
+def run_bot_thread():
+    """Runs the asyncio event loop for the Telegram bot in a separate background thread."""
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(start_telegram_bot())
 
 if __name__ == '__main__':
-    # Render binds the port to the PORT environment variable
+    # 1. Start the Aiogram bot in a background thread so it doesn't block Flask
+    bot_thread = threading.Thread(target=run_bot_thread, daemon=True)
+    bot_thread.start()
+
+    # 2. Start the Flask server on the main thread to bind the PORT for Render
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host='0.0.0.0', port=port, use_reloader=False)

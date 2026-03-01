@@ -1,4 +1,6 @@
 import random
+
+
 class Generator:
     """Library for dynamically generating data for automation tests."""
     ROBOT_LIBRARY_SCOPE = 'GLOBAL'
