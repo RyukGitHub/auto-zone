@@ -198,7 +198,7 @@ Fill CCBill payment details
     ${rtno_to_test}=    Set Variable If    '${routing_num}' == '${EMPTY}'    ${None}    ${routing_num}
     ${routing_num}=    Get Routing Number Details    ${rtno_to_test}
     
-    # Set suite variables for the Discord Teardown
+    # Set suite variables for the Telegram Teardown
     Set Suite Variable    ${RTNO}         ${routing_num}
     
     Wait For Elements State    css=#bankAccountInput    visible    timeout=20s

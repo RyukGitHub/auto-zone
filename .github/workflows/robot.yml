@@ -74,7 +74,8 @@ jobs:
 
       - name: Execute TC
         env:
-          ACH_DISCORD_WEBHOOK_URL: ${{ secrets.ACH_DISCORD_WEBHOOK_URL }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
           python -m robot -d results -t TC01 --variable SITE_NAME:${{ github.event.inputs.site_name || 'nfbusty' }} --variable EMAIL:${{ github.event.inputs.email || '' }} --variable PASSWORD:${{ github.event.inputs.password || 'ruby1234' }} --variable ACNO:${{ github.event.inputs.acno || '' }} --variable RTNO:${{ github.event.inputs.rtno || '' }} tests/join.robot
 
