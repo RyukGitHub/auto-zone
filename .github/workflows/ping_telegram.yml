@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Send Test Ping to Telegram
         run: |
-          curl -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+          curl -f --fail-with-body -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
           -H "Content-Type: application/json" \
           -d '{"chat_id": "${TELEGRAM_CHAT_ID}", "text": "${{ github.event.inputs.test_message }}"}'
         env:
