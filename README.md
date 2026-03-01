@@ -80,6 +80,12 @@ When deploying on Render, use the following configurations:
 * **Start Command**: `gunicorn app:app`
 * **Environment Variables**: Make sure to add `TELEGRAM_TOKEN` and `TELEGRAM_CHAT_ID` so production alerts work.
 
+### Verifying Bot is Alive (Telegram /start Command)
+To make your Telegram bot reply to `/start` commands and prove it's actively running on Render:
+1. Wait for your Render service to finish deploying.
+2. Visit `https://your-app-name.onrender.com/set-webhook` in your browser.
+3. It will automatically register your Render app with Telegram's API. From then on, whenever you type `/start` in your bot's chat, it will reply "🤖 ACH Automation Bot is online and ready!"
+
 ### Keeping the Bot Alive (Free Tier)
 As part of this repo, a `.github/workflows/keep_alive.yml` file is included. It is configured to run automatically every **10 minutes** via GitHub Actions to hit exactly your Render URL and prevent it from falling asleep.
 
