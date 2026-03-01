@@ -9,7 +9,8 @@ import os
 import subprocess
 import threading
 
-from aiogram import Bot, Dispatcher, Router
+from aiogram import Bot, Dispatcher, Router, F
+from aiogram.exceptions import TelegramBadRequest
 from aiogram.filters import CommandStart
 from aiogram.types import Message
 from flask import Flask, jsonify
@@ -47,10 +48,29 @@ router = Router(name="start_router")
 @router.channel_post(CommandStart())
 @router.message(CommandStart())
 async def cmd_start(message: Message):
-    """Handles the /start command in both direct messages and channels."""
+    """Handles the /start command in both direct messages and channels, deleting the trigger."""
     await message.reply("🤖 ACH Automation Bot is online and ready!")
     sender_id = message.from_user.id if message.from_user else message.chat.id
     logger.info(f"User/Channel {sender_id} initiated /start command.")
+    
+    # Attempt to gracefully delete the user's triggering command message if in a public feed
+    if message.chat.type in ["group", "supergroup", "channel"]:
+        try:
+            await message.delete()
+            logger.info(f"Deleted trigger command from {sender_id} in {message.chat.type}.")
+        except TelegramBadRequest as e:
+            logger.warning(f"Failed to delete command message from {sender_id}. Does the bot have Delete rights? Error: {e}")
+
+@router.channel_post(F.text.startswith('/'))
+@router.message(F.text.startswith('/'))
+async def fallback_delete_commands(message: Message):
+    """Deletes any unhandled commands in public channels to keep the feed clean."""
+    if message.chat.type in ["group", "supergroup", "channel"]:
+        try:
+            await message.delete()
+            logger.info(f"Deleted unhandled command '{message.text}' from {message.chat.type}.")
+        except TelegramBadRequest as e:
+            logger.warning(f"Failed to delete unhandled command. Error: {e}")
 
 async def start_telegram_bot():
     """Initializes and starts the aiogram bot polling."""
