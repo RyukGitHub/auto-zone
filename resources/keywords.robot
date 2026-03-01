@@ -137,7 +137,6 @@ Enter email and password and proceed to checkout
         Wait For Elements State    css=button#Checkout    visible    timeout=15s
         Capture screenshot    before-click-checkout
         Click    css=button#Checkout
-        Run Keyword And Ignore Error    Switch Page    NEW
         Capture screenshot    after-click-checkout
         Verify redirected to CCBill signup
         Log To Console    Filling basic information in checkout step...

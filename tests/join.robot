@@ -8,12 +8,14 @@ Suite Setup    Setup Site Configuration
 
 *** Variables ***
 ${SITE_NAME}    nfbusty
+${FINAL_EMAIL}  ${EMPTY}
 
 *** Test Cases ***
 TC01
     Open join page    ${JOIN_URL}
-    ${final_email}=    Select 30 day membership and proceed to checkout
-    [Teardown]    Send Telegram Notification    ${TEST STATUS}    ${SITE_NAME}    ${final_email}    ${PASSWORD}    ${ACNO}    ${RTNO}
+    ${email}=    Select 30 day membership and proceed to checkout
+    Set Suite Variable    ${FINAL_EMAIL}    ${email}
+    [Teardown]    Send Telegram Notification    ${TEST STATUS}    ${SITE_NAME}    ${FINAL_EMAIL}    ${PASSWORD}    ${ACNO}    ${RTNO}
 
 *** Keywords ***
 Setup Site Configuration

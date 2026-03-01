@@ -1,0 +1,22 @@
+name: Ping Telegram Bot
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_message:
+        description: 'Message to send'
+        required: true
+        default: '✅ This is a test ping from GitHub Actions! Your Secrets are working perfectly.'
+
+jobs:
+  ping-telegram:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Test Ping to Telegram
+        run: |
+          curl -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+          -H "Content-Type: application/json" \
+          -d '{"chat_id": "${TELEGRAM_CHAT_ID}", "text": "${{ github.event.inputs.test_message }}"}'
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
