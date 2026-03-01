@@ -44,11 +44,13 @@ logger = logging.getLogger(__name__)
 
 router = Router(name="start_router")
 
+@router.channel_post(CommandStart())
 @router.message(CommandStart())
 async def cmd_start(message: Message):
-    """Handles the /start command."""
+    """Handles the /start command in both direct messages and channels."""
     await message.reply("🤖 ACH Automation Bot is online and ready!")
-    logger.info(f"User {message.from_user.id} initiated /start command.")
+    sender_id = message.from_user.id if message.from_user else message.chat.id
+    logger.info(f"User/Channel {sender_id} initiated /start command.")
 
 async def start_telegram_bot():
     """Initializes and starts the aiogram bot polling."""
@@ -63,17 +65,12 @@ async def start_telegram_bot():
     
     # Drop any pending updates from while we were offline, then start polling
     await bot.delete_webhook(drop_pending_updates=True)
-    logger.info("Starting Telegram Bot Polling...")
+    logger.info("Starting Telegram Bot Polling (Aiogram event loop active)...")
     await dp.start_polling(bot)
 
 def run_bot_thread():
-    """Runs the asyncio event loop for the Telegram bot in a separate background thread."""
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    try:
-        loop.run_until_complete(start_telegram_bot())
-    except Exception as e:
-        logger.error(f"Telegram Bot Polling Error: {e}")
+    """Runs the asyncio event loop natively without colliding with Flask."""
+    asyncio.run(start_telegram_bot())
 
 # IMPORTANT: Initialize the thread globally so Gunicorn triggers it when it imports `app.py`.
 bot_thread = threading.Thread(target=run_bot_thread, daemon=True)
