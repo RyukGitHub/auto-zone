@@ -53,20 +53,43 @@ async def cmd_purge(message: Message):
         if count <= 0:
             return
             
-        # Build the exact mathematical range stretching backwards `count` times
-        limit_id = current_id - count + 1
-        message_ids_to_delete = list(range(max(1, limit_id), current_id + 1))
         logger.info(f"{sender_id} initiated a numbered /purge {count} in {message.chat.type}.")
+        
+        # We need to explicitly delete `count` messages. Because Telegram IDs auto-increment 
+        # even for deleted/ghost messages, we can't just subtract mathematically.
+        # We must loop backward in chunks until we hit the target.
+        deleted_count = 0
+        search_id = current_id
+        
+        while deleted_count < count and search_id > 0:
+            # Grab a maximum slice of 100 backwards
+            chunk_needed = min(100, count - deleted_count)
+            chunk_ids = list(range(max(1, search_id - chunk_needed + 1), search_id + 1))
+            
+            try:
+                # delete_messages will silently ignore IDs that don't exist anymore.
+                # However, it returns True if at least ONE message in the chunk was deleted.
+                # Since we cannot easily verify EXACTLY how many survived the purge, 
+                # we assume a 1:1 deletion rate for mathematical simplicity in Channels.
+                await message.bot.delete_messages(chat_id=chat_id, message_ids=chunk_ids)
+                deleted_count += len(chunk_ids)
+            except TelegramBadRequest as e:
+                # If a chunk fails entirely (e.g., all messages were already deleted), just skip backward.
+                logger.debug(f"Chunk deletion skipped near ID {search_id}: {e}")
+                pass
+                
+            search_id -= chunk_size
+            
+        logger.info(f"Purge complete for {chat_id}.")
+        return
 
-    # Telegram limit: delete_messages can only accept 100 IDs per API call max.
-    # Chunk the payload mathematically to prevent crashes on large purges.
+    # Range Purge Execution (from Reply)
     chunk_size = 100
     for i in range(0, len(message_ids_to_delete), chunk_size):
         chunk = message_ids_to_delete[i:i + chunk_size]
         try:
-            # We use `bot.delete_messages` which is highly efficient for bulk
             await message.bot.delete_messages(chat_id=chat_id, message_ids=chunk)
         except TelegramBadRequest as e:
-            logger.warning(f"Partial failure during bulk purge chunk in {chat_id}. Some messages may have already been deleted. Error: {e}")
+            logger.warning(f"Partial failure during bulk purge chunk in {chat_id}. Error: {e}")
             
     logger.info(f"Purge complete for {chat_id}.")
