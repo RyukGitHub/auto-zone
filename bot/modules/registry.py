@@ -39,7 +39,7 @@ async def cmd_getall(message: Message):
         await message.reply("The chat registry is currently empty. The bot hasn't observed any messages in other channels yet.")
         return
 
-    response = "🕷️ **Autonomous Chat Registry:**\n\n"
+    response = "🕷️ **Chat Registry:**\n\n"
     for chat_id, data in registry.items():
         title = data.get("title", "Unknown Chat")
         ctype = data.get("type", "unknown")

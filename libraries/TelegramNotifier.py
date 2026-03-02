@@ -57,11 +57,11 @@ class TelegramNotifier:
         # Construct the Telegram message payload (using MarkdownV2 or HTML, we'll use HTML for simplicity and robust parsing, or basic Markdown)
         message = (
             f"✅ *Automation Test Passed*\n"
-            f"*Site:* {mapped_site}\n"
-            f"*Email:* {display_email}\n"
-            f"*Password:* {password}\n"
-            f"*AC NO:* {ac_no}\n"
-            f"*RT NO:* {rt_no}\n"
+            f"*Site:* #{mapped_site}\n"
+            f"*Email:* `{display_email}`\n"
+            f"*Password:* `{password}`\n"
+            f"*AC NO:* `{ac_no}`\n"
+            f"*RT NO:* `{rt_no}`\n"
             f"*Created Date:* {current_date_formatted}"
         )
 
