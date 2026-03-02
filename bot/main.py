@@ -29,5 +29,14 @@ async def start_telegram_bot():
     await bot.delete_webhook(drop_pending_updates=True)
     logger.info("Starting Telegram Bot Polling (Modular Aiogram Event Loop Active)...")
     
+    # Broadcast startup success to the main channel if configured
+    chat_id = os.environ.get('TELEGRAM_CHAT_ID')
+    if chat_id:
+        try:
+            await bot.send_message(chat_id=chat_id, text="🚀 **ACH Automation Bot has been successfully deployed and is now online!**", parse_mode="Markdown")
+            logger.info("Sent deployment startup ping.")
+        except Exception as e:
+            logger.warning(f"Failed to send startup ping to {chat_id}. Error: {e}")
+            
     # Disable signal handling since this runs in a background thread inside Flask
     await dp.start_polling(bot, handle_signals=False)

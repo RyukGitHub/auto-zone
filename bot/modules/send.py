@@ -1,4 +1,4 @@
-import json
+import os
 import logging
 from aiogram import Router
 from aiogram.filters import Command
@@ -9,12 +9,18 @@ logger = logging.getLogger(__name__)
 router = Router(name="send")
 
 def load_channels():
-    """Dynamically reads the routing aliases from the JSON dictionary."""
+    """Dynamically parses routing aliases from the CHANNELS_MAP environment variable."""
     try:
-        with open("channels.json", "r") as f:
-            return json.load(f)
+        mapping_string = os.environ.get("CHANNELS_MAP", "")
+        # Expected format: "nf:-100xx, ml:-100xx"
+        channels = {}
+        for pair in mapping_string.split(","):
+            if ":" in pair:
+                alias, chat_id = pair.split(":", 1)
+                channels[alias.strip()] = chat_id.strip()
+        return channels
     except Exception as e:
-        logger.error(f"Error loading channels.json: {e}")
+        logger.error(f"Error parsing CHANNELS_MAP environment variable: {e}")
         return {}
 
 @router.channel_post(Command("send"))
