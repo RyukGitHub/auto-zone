@@ -3,7 +3,7 @@ import logging
 from aiogram import Bot, Dispatcher
 
 # Import the modular routers
-from bot.modules import start, send, purge, logger_module
+from bot.modules import start, send, purge, registry
 
 logger = logging.getLogger(__name__)
 
@@ -23,7 +23,7 @@ async def start_telegram_bot():
     dp.include_router(purge.router)
     
     # 2. Register wildcard and diagnostic loggers last to avoid swallowing commands
-    dp.include_router(logger_module.router)
+    dp.include_router(registry.router)
     
     # Drop any pending updates from while we were offline, then start polling
     await bot.delete_webhook(drop_pending_updates=True)
