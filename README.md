@@ -88,6 +88,6 @@ To prove the bot is actively running on Render:
 
 ### Keeping the Bot Alive (Free Tier)
 If you deploy on the Free Tier, Render spins down the service after 15 minutes of inactivity. To prevent this, go to a free service like [cron-job.org](https://cron-job.org) and set it to ping exactly this URL every 10 minutes:
-`https://your-app-name.onrender.com/ping`
+`https://your-app-name.onrender.com/health`
 
 *(Note: The `app.py` server also has an optional `/run-tests` endpoint which you can hit via HTTP to remotely trigger tests without SSH!)*

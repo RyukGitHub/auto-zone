@@ -17,10 +17,10 @@ app = Flask(__name__)
 def home():
     return "ACH Automation Bot is Alive and Running!"
 
-@app.route('/ping')
-def ping():
-    """Endpoint to hit to keep Render awake."""
-    return jsonify({"status": "alive", "message": "Hi!"})
+@app.route('/health')
+def health():
+    """Endpoint to check service health."""
+    return jsonify({"status": "ok", "message": "Service is healthy"})
 
 @app.route('/run-tests')
 def run_tests():
