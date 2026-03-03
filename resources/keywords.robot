@@ -19,26 +19,35 @@ Close consent modal if present
     ${btn}=    Set Variable    css=div.modal-dialog button[data-bs-dismiss="modal"]:has-text("I agree")
     ${count}=  Get Element Count    ${btn}
     IF    ${count} > 0
-        Log To Console    Found "I agree" modal, clicking it...
-        Wait For Elements State    ${btn}    visible    timeout=5s
-        Sleep    1s
-        Click    ${btn}
+        Log To Console    Found "I agree" modal in DOM, checking visibility...
+        ${status}=    Run Keyword And Return Status    Wait For Elements State    ${btn}    visible    timeout=3s
+        IF    ${status}
+            Log To Console    Modal is visible, clicking it...
+            Sleep    1s
+            Click    ${btn}
+        END
     ELSE
         ${btn2}=    Set Variable    css=button.agree:has-text("I agree")
         ${count2}=  Get Element Count    ${btn2}
         IF    ${count2} > 0
-            Log To Console    Found alternative consent modal, clicking it...
-            Wait For Elements State    ${btn2}    visible    timeout=5s
-            Sleep    1s
-            Click    ${btn2}
+            Log To Console    Found alternative consent modal in DOM, checking visibility...
+            ${status2}=    Run Keyword And Return Status    Wait For Elements State    ${btn2}    visible    timeout=3s
+            IF    ${status2}
+                Log To Console    Modal is visible, clicking it...
+                Sleep    1s
+                Click    ${btn2}
+            END
         ELSE
             ${btn3}=    Set Variable    css=button.btn-primary.agree
             ${count3}=  Get Element Count    ${btn3}
             IF    ${count3} > 0
-                Log To Console    Found tertiary consent modal button, clicking it...
-                Wait For Elements State    ${btn3}    visible    timeout=5s
-                Sleep    1s
-                Click    ${btn3}
+                Log To Console    Found tertiary consent modal button in DOM, checking visibility...
+                ${status3}=    Run Keyword And Return Status    Wait For Elements State    ${btn3}    visible    timeout=3s
+                IF    ${status3}
+                    Log To Console    Modal is visible, clicking it...
+                    Sleep    1s
+                    Click    ${btn3}
+                END
             END
         END
     END
@@ -97,19 +106,28 @@ Select 30 day membership option
         Log To Console    Found 30 Day Membership option, clicking it...
         Click    ${option}
     END
-    ${submit_btn}=    Set Variable    css=button.submit-btn:has-text("Get Access Now")
-    ${submit_count}=    Get Element Count    ${submit_btn}
-    IF    ${submit_count} > 0
-        Log To Console    Found Get Access Now button, clicking it...
-        Run Keyword And Ignore Error    Wait For Elements State    ${submit_btn}    visible    timeout=2s
-        Run Keyword And Ignore Error    Click    ${submit_btn}
+    ${prompt_count}=    Get Element Count    css=#promptUsernameModal.show
+    IF    ${prompt_count} > 0
+        Log To Console    Username prompt modal auto-triggered. Skipping background submit click.
     ELSE
-        ${submit_btn2}=    Set Variable    css=button.submit-btn[type="submit"]
-        ${submit_count2}=    Get Element Count    ${submit_btn2}
-        IF    ${submit_count2} > 0
-            Log To Console    Found alternative submit button, clicking it...
-            Run Keyword And Ignore Error    Wait For Elements State    ${submit_btn2}    visible    timeout=2s
-            Run Keyword And Ignore Error    Click    ${submit_btn2}
+        ${submit_btn}=    Set Variable    css=button.submit-btn:has-text("Get Access Now")
+        ${submit_count}=    Get Element Count    ${submit_btn}
+        IF    ${submit_count} > 0
+            Log To Console    Found Get Access Now button, clicking it...
+            ${status}=    Run Keyword And Return Status    Wait For Elements State    ${submit_btn}    visible    timeout=2s
+            IF    ${status}
+                Run Keyword And Ignore Error    Click    ${submit_btn}
+            END
+        ELSE
+            ${submit_btn2}=    Set Variable    css=button.submit-btn[type="submit"]
+            ${submit_count2}=    Get Element Count    ${submit_btn2}
+            IF    ${submit_count2} > 0
+                Log To Console    Found alternative submit button, clicking it...
+                ${status2}=    Run Keyword And Return Status    Wait For Elements State    ${submit_btn2}    visible    timeout=2s
+                IF    ${status2}
+                    Run Keyword And Ignore Error    Click    ${submit_btn2}
+                END
+            END
         END
     END
     Capture screenshot    after-select-membership
